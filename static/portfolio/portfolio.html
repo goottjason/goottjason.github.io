@@ -1,685 +1,687 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>JONGWON KIM</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-@media print { .page-break { break-before: page; } }
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 3px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.page-description {
-	margin-bottom: 2em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(50, 48, 44, 1);
-}
-.highlight-gray {
-	color: rgba(115, 114, 110, 1);
-	fill: rgba(115, 114, 110, 1);
-}
-.highlight-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.highlight-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.highlight-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.highlight-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.highlight-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(205, 60, 58, 1);
-	fill: rgba(205, 60, 58, 1);
-}
-.highlight-default_background {
-	color: rgba(50, 48, 44, 1);
-}
-.highlight-gray_background {
-	background: rgba(248, 248, 247, 1);
-}
-.highlight-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.highlight-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.highlight-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.highlight-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.highlight-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.highlight-purple_background {
-	background: rgba(248, 243, 252, 1);
-}
-.highlight-pink_background {
-	background: rgba(252, 241, 246, 1);
-}
-.highlight-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(115, 114, 110, 1);
-	fill: rgba(115, 114, 110, 1);
-}
-.block-color-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.block-color-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.block-color-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.block-color-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.block-color-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(205, 60, 58, 1);
-	fill: rgba(205, 60, 58, 1);
-}
-.block-color-default_background {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray_background {
-	background: rgba(248, 248, 247, 1);
-}
-.block-color-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.block-color-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.block-color-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.block-color-purple_background {
-	background: rgba(248, 243, 252, 1);
-}
-.block-color-pink_background {
-	background: rgba(252, 241, 246, 1);
-}
-.block-color-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
-.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
-.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
-.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
-.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
-.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
-.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
-.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
-.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
-.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="23ba2715-629b-802b-b15a-c352c76c4b85" class="page sans"><header><h1 class="page-title">JONGWON KIM</h1><p class="page-description"></p></header><div class="page-body"><div id="23fa2715-629b-805a-a5ed-c195e9ddac62" class="column-list"><div id="23fa2715-629b-803f-bfee-cf574adbd1f5" style="width:50.00000000000002%" class="column"><figure id="23fa2715-629b-80af-8e46-d1046909c851" class="image"><a href="image.png"><img style="width:240px" src="image.png"/></a></figure><p id="23fa2715-629b-80be-8c51-f599b2644c83" class=""><strong>김종원<br/><br/></strong>010-2787-8712<br/>goottjason@gmail.com<br/></p><p id="23fa2715-629b-8034-9ae5-dd4c968c445b" class="">
-</p></div><div id="23fa2715-629b-8093-9105-c5327bc028a8" style="width:50.000000000000014%" class="column"><figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="23fa2715-629b-8044-af40-ce555b42eb58"><div style="width:100%"><p id="23fa2715-629b-80e1-85f4-c069d6cc6811" class="">· JAVA 웹서비스와 CI/CD 자동화<br/>   ㄴ 우수 수료, 구트아카데미<br/>· (전) 온라인구매대행업 대표<br/>· 정보처리기사<br/>· 성균관대 경제학 졸업<br/>· 한국디지털미디어고 이비즈니스과<br/></p></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23ca2715-629b-807d-baee-e1018cd4eefc"><div style="width:100%"><p id="23ca2715-629b-806c-b899-f76ad166eda3" class="">개발에서 성취감을 느끼고 늦게 시작했지만 <br/>그래서 더 에너지 있는 <br/><strong>88년생 김종원</strong>입니다.<br/>몰입하면 시간 가는 줄 모르고 <br/><strong>일에 집중</strong>하며,<br/><br/><strong>신뢰와 책임감</strong>을 가장 중요한 가치로 여깁니다. <br/>주변에서는 <br/><strong>맡은 일을 꼼꼼하게</strong> 해내는,<br/><br/><strong>믿을 수 있는</strong> 사람으로 평가합니다.</p></div></figure></div></div><p id="23fa2715-629b-8040-81ba-fbb5f5f723a6" class="">
-</p><table id="23ca2715-629b-8010-934e-fe26dafde4a6" class="simple-table"><thead class="simple-table-header"><tr id="23ca2715-629b-808e-97c5-ca6eaeee7502"><th id="wX_Z" class="simple-table-header-color simple-table-header" style="width:173.73959350585938px">Skill</th><th id="^bJw" class="simple-table-header-color simple-table-header" style="width:219.58334350585938px">Level</th><th id="A[vS" class="simple-table-header-color simple-table-header" style="width:535.0104370117188px">Details</th></tr></thead><tbody><tr id="23ca2715-629b-80f5-b0fa-e386e9d27042"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>Java / Spring</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">Legacy 및 Boot 기본 환경설정 | 기본 문법 숙지 및 예외처리<br/>컬렉션프레임워크 | 웹크롤링 | API 요청 및 응답 | 객체지향 및 MVC패턴<br/></td></tr><tr id="23ca2715-629b-8065-bc65-e368da6495e6"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>Python</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩⬜⬜⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">Anaconda 가상환경설정 | 기본 문법, 리스트컴프리헨션 및 람다함수 숙지<br/>웹크롤링(Selenium) | 파싱(BeautifulSoup) | GUI 프로그램 구현 가능<br/></td></tr><tr id="23ca2715-629b-8079-9ba7-d9196dac3406"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>Javascript / jQuery</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">API 요청 및 응답 | 유효성검사 및 이벤트 제어 | 테이블, 차트 등 뷰 렌더링</td></tr><tr id="23ca2715-629b-809c-b012-d23d54b5af2f"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>HTML</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">HTML (시멘틱) 태그 | 폼 요소로 사용자 입력 처리</td></tr><tr id="23ca2715-629b-80a3-a838-e7ad05feb3c1"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>CSS</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩⬜⬜⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">호버, 포커스, 색상, 폰트 마진, 패딩 스타일</td></tr><tr id="23ca2715-629b-8097-9798-dccf58f9512b"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>Thymeleaf / JSP</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">동적 데이터 출력, 반복문, 조건문, 폼처리 기능 및 레이아웃 템플릿 구성</td></tr><tr id="23ca2715-629b-8031-aa8f-d76a9a1a0350"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>My-SQL / Oracle</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">SQL 문법(CRUD) | 테이블 생성, 인덱스 및 기본 제약조건 설정<br/>데이터집계함수, JOIN, GROUP BY, ORDER BY 등 복합쿼리 및 서브쿼리<br/></td></tr><tr id="23ca2715-629b-803b-935b-d497bd594ddd"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>Docker / Actions</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">이미지, 컨테이너, Dockerfile 이해 및 컨테이너 구동 경험<br/>Docker, GitHub Actions를 통한 간단한 CI/CD 파이프라인 구축 경험<br/></td></tr></tbody></table><h1 id="23ca2715-629b-8034-9cbe-f06dc7972e37" class="">PORTFOLIO</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23ba2715-629b-80c4-bb88-e309f385cb65"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><p id="23ba2715-629b-809b-aaba-ccc313ad1bdb" class=""><strong>INDEX</strong></p><ol type="1" id="23ba2715-629b-80aa-87ec-e03e57f9702b" class="numbered-list" start="1"><li><strong>LMS : 학습관리시스템 (교육생·강사·관리자)</strong></li></ol><ol type="1" id="23ba2715-629b-80ae-860a-ec1d76527adc" class="numbered-list" start="2"><li><strong>할일관리(To-Do) 및 커뮤니티 플랫폼</strong></li></ol><ol type="1" id="23ba2715-629b-80f9-b7c3-fde51f73cc00" class="numbered-list" start="3"><li><strong>주문정리 GUI 프로그램</strong></li></ol><ol type="1" id="23ba2715-629b-801a-a426-fb3fbac1717e" class="numbered-list" start="4"><li><strong>웹 크롤링 &amp; 실시간 상품 가격 및 재고 업데이터</strong></li></ol></div></figure><hr id="23ba2715-629b-8015-ab95-c387193edfd2" style="page-break-after: always; visibility: hidden !important;"/><h1 id="23ba2715-629b-80b0-93d0-f841a57dad1b" class="">🥇<strong>LMS 학습관리시스템 (교육생, 강사, 관리자)</strong></h1><div id="23ba2715-629b-8040-8636-c1e270aba1f6" class="column-list"><div id="23ba2715-629b-80f5-98a8-d9f7a3940320" style="width:56.25%" class="column"><blockquote id="23ba2715-629b-80b3-894e-f89a2a840fc5" class=""><strong>고용노동부 K-디지털아카데미 훈련과정을 타겟으로 관리자·강사·교육생 역할 맞춤형 LMS 시스템 구축</strong><br/>기간 : 2025.05 ~ 2025.07 <br/>인원 : 7명(<br/><strong>팀프로젝트</strong>)<br/><br/><a href="https://github.com/alkali55/lms">GitHub(lms)</a></blockquote><h2 id="23ba2715-629b-80a9-89a2-e425ff351075" class="">사용스택</h2><p id="23ba2715-629b-80db-b7ca-e30bb443902a" class=""><code><strong>Java</strong></code><strong> </strong><code><strong>Spring Boot</strong></code><strong> </strong><code><strong>MyBatis</strong></code><strong> | </strong><code><strong>Thymeleaf</strong></code><strong> </strong><code><strong>jQuery</strong></code><strong>  </strong><code><strong>Javascript</strong></code><strong> </strong><code><strong>Bootstrap</strong></code><strong> | </strong><code><strong>GitHub Actions</strong></code><strong> </strong><code><strong>AWS EC2</strong></code><strong> </strong></p></div><div id="23ba2715-629b-803e-919e-d904f0d71b91" style="width:43.75%" class="column"><figure id="23ba2715-629b-803f-9cc6-ca4569279d9b" class="image"><a href="image%201.png"><img style="width:715.96875px" src="image%201.png"/></a></figure></div></div><h2 id="23ba2715-629b-80c5-9fea-f54dca7ebcf6" class="">담당</h2><ul id="23ba2715-629b-805e-b253-e7746731f977" class="bulleted-list"><li style="list-style-type:disc"><strong>데이터베이스를 설계</strong>하고 ERD를 완성하였습니다.</li></ul><ul id="23ba2715-629b-807b-9444-f45f53e53e12" class="bulleted-list"><li style="list-style-type:disc">사용자 권한에 따라 구분하여 과정 전반의 정보를 제공하는 <strong>REST API를 구현</strong>하였습니다.</li></ul><ul id="23ba2715-629b-80eb-a1a7-eec6eb0deeee" class="bulleted-list"><li style="list-style-type:disc"><strong>DB(MyBatis)부터 백엔드(Java, Spring Boot), 프론트엔드(Thymeleaf, jQuery, Javascript)까지 전체 개발 영역을 아울러 주요 페이지를 완성</strong>하였습니다.<ul id="23ba2715-629b-80b5-94f3-dfef49cf1123" class="bulleted-list"><li style="list-style-type:circle">담당 페이지 : 과정관리, 교육생배정, 교육생관리, 교직원관리, 강의실관리, 관리자 대시보드 등</li></ul></li></ul><h2 id="23ba2715-629b-809e-9c60-fed1dd84a44c" class="">프로젝트를 통해 얻은 점과 보완할 점</h2><h3 id="23ba2715-629b-8067-bebd-eb8ade6cff68" class=""><mark class="highlight-teal">REST API 구현과 성능개선</mark> → <mark class="highlight-brown">RESTFul API, Swagger UI</mark></h3><ul id="23ba2715-629b-8008-b0a3-fbfdda59beed" class="bulleted-list"><li style="list-style-type:disc">REST API를 직접 설계하며 <strong>JSON 데이터에 대한 이해</strong>를 높이고, <strong>성능 개선</strong>을 위해 <strong>쿼리 최적화와 referer를 활용한 차등 조회 기법</strong>을 배웠습니다. 실제 데이터를 빠르고 효과적으로 전달해보면서 실무에서 API의 중요성을 체감했습니다.</li></ul><ul id="23ba2715-629b-8000-b9c9-f2477bced4bd" class="bulleted-list"><li style="list-style-type:disc">앞으로는 REST 아키텍처의 원칙을 더 엄격히 준수한 RESTFul API를 설계해보고, Swagger UI와 같은 문서화 도구를 더 적극적으로 활용하여 API의 가독성과 협업 효율성을 높이는 부분을 더 보완하려고 합니다.</li></ul><h3 id="23ba2715-629b-8066-bc5a-f1cb17276814" class=""><mark class="highlight-teal">DB 설계와 SQL Mapper 프레임워크 사용</mark> → <mark class="highlight-brown">JPA ORM 프레임워크</mark></h3><ul id="23ba2715-629b-8033-a048-f717e3bdb87f" class="bulleted-list"><li style="list-style-type:disc">직접 <strong>테이블 모델링</strong>을 하고, <strong>MyBatis</strong> 기반의 SQL 매퍼 프레임워크를 통해 <strong>SQL 쿼리를 효율적으로 관리</strong>하며 데이터 흐름을 명확히 파악할 수 있었습니다.</li></ul><ul id="23ba2715-629b-8036-9302-ea8189df6c5c" class="bulleted-list"><li style="list-style-type:disc">추후에는 JPA와 같은 ORM을 학습·적용해 객체지향적으로 데이터베이스 연동을 구현함으로써, 코드의 생산성을 높이고 DB 종속성도 완화할 수 있도록 개선할 계획입니다.</li></ul><h3 id="23ba2715-629b-8059-b37a-f21466ca6476" class=""><mark class="highlight-teal">Notion으로 설계부터 개발까지 협업 사이클 경험</mark> → <mark class="highlight-brown">Jira, Slack</mark></h3><ul id="23ba2715-629b-803e-ad4e-dba0a4c0a62e" class="bulleted-list"><li style="list-style-type:disc"><strong>Notion</strong>을 통한 프로젝트 <strong>문서화(기능명세서, 와이어프레임, 플로우차트, 칸반보드 등)와 업무 분담, 일정 관리</strong> 등 설계~개발 전 과정을 체계적으로 관리하면서 협업의 중요성과 팀워크를 배울 수 있었습니다. → <a href="https://www.notion.so/1ede9988a01e80e38642ee641c601765?pvs=21">노션문서 링크 📎</a></li></ul><ul id="23ba2715-629b-80e3-9dee-db9068108e89" class="bulleted-list"><li style="list-style-type:disc">다음에는 Jira, Slack 등 더 전문적인 협업 및 이슈 트래킹 툴을 도입해 실무 현장에 가까운 소통과 워크플로우, 자동화된 관리 체계를 경험해보고자 합니다. </li></ul><h3 id="23ba2715-629b-8025-bde9-e5e947c5afa9" class=""><mark class="highlight-teal">사용자 중심의 UI/UX와 기획 참여</mark> → <mark class="highlight-brown">React, Next.JS</mark></h3><ul id="23ba2715-629b-80f4-a1e4-fe842441ff13" class="bulleted-list"><li style="list-style-type:disc">서비스 사용자를 고려한 <strong>화면 설계, 인터페이스 개선, 기획</strong>에 직접 참여함으로써 <strong>실질적인 사용자 경험 개선 방안</strong>을 고민해볼 수 있었습니다.</li></ul><ul id="23ba2715-629b-80ef-85a5-c27ecc9b5fe7" class="bulleted-list"><li style="list-style-type:disc">앞으로는 React, Next.js 등 최신 프론트엔드 프레임워크를 익혀 더욱 모던하고 반응형 UI, 빠른 렌더링 및 SEO 최적화까지 구현할 수 있도록 역량을 확장할 계획입니다.</li></ul><h2 id="23ca2715-629b-803f-8ed3-f4e1e9b86f44" class="">더 자세히 보기</h2><ul id="23fa2715-629b-80f1-a45f-e6221c25d4e1" class="bulleted-list"><li style="list-style-type:disc"><a href="https://goottjason.github.io/static/portfolio/files/lms_erd.pdf">ER-Diagram PDF 다운로드 📎</a></li></ul><ul id="23ca2715-629b-80d9-a362-e8de59cae694" class="bulleted-list"><li style="list-style-type:disc"><a href="https://goottjason.github.io/static/portfolio/files/lms_pt.pdf">발표 PDF 다운로드 📎</a></li></ul><ul id="23ca2715-629b-809a-a637-f60c52ab4ad1" class="bulleted-list"><li style="list-style-type:disc"><a href="https://goottjason.github.io/static/portfolio/files/lms_capture.mp4">각 페이지 별 시연 영상 다운로드 📎</a></li></ul><hr id="23ba2715-629b-80d2-b355-f740f5992e17" style="page-break-after: always; visibility: hidden !important;" /><h1 id="23ba2715-629b-8070-9bf3-f990e3365d9b" class="">⌚할일관리(To-Do) 및 커뮤니티 플랫폼</h1><div id="23ba2715-629b-8022-848d-ed30a7f3ab34" class="column-list"><div id="23ba2715-629b-8086-8190-ed2fbd21e1e2" style="width:50%" class="column"><blockquote id="23ba2715-629b-8088-b09d-c6f31742cb55" class="">기간 : 2025.03 ~ 2025.04 <br/>개인프로젝트<br/><br/><a href="https://github.com/goottjason/diarytodo">GitHub(diarytodo)</a></blockquote><h2 id="23ba2715-629b-80ce-8d99-c6b17d37ab3d" class="">사용스택</h2><p id="23ba2715-629b-801b-a520-c6caef760bb5" class=""><code><strong>Java</strong></code><strong>  </strong><code><strong>Spring Boot</strong></code><strong> </strong><code><strong>MyBatis</strong></code><strong>  </strong></p><p id="23ba2715-629b-807e-b52e-e541fb2c351b" class=""><code><strong>Thymeleaf</strong></code><strong> </strong><code><strong>jQuery</strong></code><strong>  </strong><code><strong>Javascript</strong></code><strong> </strong><code><strong>Bootstrap</strong></code><strong> </strong></p><p id="23ba2715-629b-804a-91aa-ce85e509336e" class=""><code><strong>Cafe24</strong></code><strong>  </strong></p></div><div id="23ba2715-629b-804e-8b06-e7880a30e931" style="width:50%" class="column"><figure id="23ba2715-629b-8081-a465-e1fc898cbe1c" class="image"><a href="image%202.png"><img style="width:617.2916870117188px" src="image%202.png"/></a></figure></div></div><h2 id="23ba2715-629b-8090-8342-ec86b92bb0a1" class="">주요 기능</h2><ul id="23ba2715-629b-80ae-8437-e553bed7b3ec" class="bulleted-list"><li style="list-style-type:disc">회원가입, 로그인한 회원은 <strong>할일(To-Do)을 기록하고 중요도, 날짜, 완료여부로 정렬, 필터링하여 관리</strong>가 가능합니다.</li></ul><ul id="23ba2715-629b-80a8-af5a-f17420e4a1b2" class="bulleted-list"><li style="list-style-type:disc">회원 간에 서비스에 대한 소통과 피드백이 가능하도록 <strong>계층형 및 댓글형 게시판</strong>을 제공합니다.</li></ul><h2 id="23ba2715-629b-804e-8038-fa0ad4e737c6" class="">프로젝트를 통해 얻은 점과 보완할 점</h2><h3 id="23ba2715-629b-805c-bf06-db86890f3267" class=""><mark class="highlight-teal">회원가입, 로그인, 사용자관리 기능 구현</mark> → <mark class="highlight-brown">Spring Security</mark></h3><ul id="23ba2715-629b-80b8-bbdd-fcac81c37d55" class="bulleted-list"><li style="list-style-type:disc"><strong>회원가입, 로그인, 사용자 관리의 기본적인 개발 사이클과 이에 필요한 테이블 설계 및 흐름</strong>을 익히면서, <strong>사용자 인증과 권한 관리의 구조를 이해</strong>할 수 있었습니다. 실제 서비스에서 사용자 정보를 어떻게 체계적으로 관리하는지 실무 감각을 키웠습니다.</li></ul><ul id="23ba2715-629b-8021-91b4-d6e348cd0b14" class="bulleted-list"><li style="list-style-type:disc">앞으로는 Spring Security를 도입해 보안 관련 기본 기능을 강화하고, OAuth2, JWT 토큰 기반 인증, 그리고 소셜 로그인 연동 같은 고급 인증 방식을 적용해 보는 것이 필요합니다. 이를 통해 보안성을 높이고 보다 사용자 친화적인 인증 시스템을 구축할 수 있을 것입니다.</li></ul><h3 id="23ba2715-629b-805f-8281-da3a4eba48fc" class=""><mark class="highlight-teal">Kakao Map API 및 Naver E-Mail API 사용</mark> → <mark class="highlight-brown">Google Map API,  SMS API </mark></h3><ul id="23ba2715-629b-80a3-b8a6-d3590b2af189" class="bulleted-list"><li style="list-style-type:disc"><strong>Kakao Map API를 통해 위치 기반 서비스</strong> 구현 방법을 경험했고,<strong> Naver E-Mail API를 활용해 이메일 발송 기능</strong>을 연동하는 실무 통합 경험을 쌓았습니다. 이를 통해 외부 API와의 연동 방식과 인증, 데이터 처리 흐름을 익혔습니다.</li></ul><ul id="23ba2715-629b-8077-9213-f0d8c9216e63" class="bulleted-list"><li style="list-style-type:disc">앞으로는 Google Map API와 SendGrid, Twilio 같은 다양한 E-Mail 및 SMS API를 학습해 활용 범위를 넓히고, API 선택 시 비용 효율성, 신뢰성, 기능적 차이점 등을 고려하며 서비스 확장성과 안정성을 더욱 향상시키는 것이 바람직합니다. 다양한 통신 채널을 연동해 사용자 커뮤니케이션을 강화하는 방향으로 나아가면 좋겠습니다.</li></ul><hr id="23ba2715-629b-80d4-8af1-dea6a4e76982" style="page-break-after: always; visibility: hidden !important;" /><h1 id="23ba2715-629b-80b8-b3c8-c1ae2d9a2783" class="">⚙️주문정리 GUI 프로그램</h1><div id="23ba2715-629b-80ca-9b60-c4222197cc97" class="column-list"><div id="23ba2715-629b-80f1-805d-c952333b7815" style="width:62.5%" class="column"><blockquote id="23ba2715-629b-80fb-9c47-e46bb0f2d9ef" class=""><strong>e-commerce 플랫폼(쿠팡, 스마트스토어 등)의 주문 데이터(Excel 파일)를 가공하여 주문관리 구글 시트에 자동 업로드</strong><br/>기간 : 2025.02 ~ 2025.02 <br/>개인프로젝트<br/>GitHub : <br/><a href="https://github.com/goottjason/python-order-combiner">https://github.com/goottjason/python-order-combiner</a></blockquote><h2 id="23ca2715-629b-80fe-82cb-c2cd2c02d7d4" class="">사용스택</h2><p id="23ba2715-629b-80e7-9e8f-f5ebff40c23c" class=""><code><strong>Python</strong></code><strong> </strong><code><strong>pandas</strong></code><strong> </strong><code><strong>tkinter</strong></code><strong> </strong><code><strong>openpyxl</strong></code><strong> </strong></p><p id="23ba2715-629b-800e-be7a-cdbb25f10d3d" class=""><code><strong>Google Sheets API</strong></code><strong> </strong></p><p id="23ba2715-629b-80a3-8db3-dc9b8657991b" class="">
-</p></div><div id="23ba2715-629b-809e-b024-e1ddd7dd758b" style="width:37.49999999999999%" class="column"><figure id="23ba2715-629b-80d4-abfe-e3eb67d4704a" class="image"><a href="image%203.png"><img style="width:641.9791870117188px" src="image%203.png"/></a></figure></div></div><h2 id="23ba2715-629b-8094-aa5b-cc65f8143905" class="">주요 기능</h2><ul id="23ca2715-629b-8009-b300-f76b1c2e2157" class="bulleted-list"><li style="list-style-type:disc"><strong>Excel 데이터 로드 및 가공</strong>: pandas와 openpyxl을 활용해 다양한 e-commerce 플랫폼(쿠팡, 스마트스토어 등)의 Excel 파일을 읽어들입니다. 컬럼 매핑, 데이터 정제(형식 변경, NaN 처리, 공백 제거), 계산 로직(순수익 = 결제액 * 0.89 올림, 수량 조정) 등을 수행합니다. 상품목록 구글 시트에서 상품 정보를 매칭해 영문명, 링크, 상품코드 등을 추가합니다.</li></ul><ul id="23ca2715-629b-80a7-8ea6-d0b58373a95c" class="bulleted-list"><li style="list-style-type:disc"><strong>Google Sheets API를 통한 데이터 동기화</strong>: Sheets에서 기존 주문번호를 조회해 중복을 검사한 후, 신규 데이터만 append합니다. API 인증(Credentials)과 batchUpdate를 사용해 동적 수식 적용(예: HYPERLINK로 조회 링크 생성, 총비용 = 구매비 + 배송비, 순손익 = 순수익 - 총비용)과 스타일링(배경색, 테두리, 통화 서식)을 자동화합니다.</li></ul><ul id="23ca2715-629b-802a-9ad5-d396b86d8e20" class="bulleted-list"><li style="list-style-type:disc"><strong>사용자 친화적 GUI 인터페이스</strong>: tkinter로 플랫폼별 파일 선택 버튼, 드래그앤드롭, 로그 출력 창(실시간 진행 상황 표시), 실행/초기화 버튼을 구현합니다. 멀티스레딩(threading)으로 UI가 멈추지 않게 처리합니다.</li></ul><ul id="23ca2715-629b-803a-bc8b-f7948eaa1d76" class="bulleted-list"><li style="list-style-type:disc"><strong>Standalone exe 파일 생성</strong>: pyinstaller를 사용해 프로그램을 단일 exe 파일로 패키징하여, IDE나 Python 설치 없이 Windows 환경에서 바로 실행 가능하게 합니다. (인증 JSON 파일 내장 지원)</li></ul><h2 id="23ba2715-629b-800e-bde3-e5cbd36aab67" class="">프로젝트를 통해 얻은 점과 보완할 점</h2><h3 id="23ba2715-629b-8063-bfc0-ef6ce81f94b5" class=""><mark class="highlight-teal"><strong>구글 시트 API 활용 및 자동화 경험</strong></mark> → <mark class="highlight-brown">에러/예외 대응 강화</mark></h3><ul id="23ba2715-629b-807c-851d-ea9c3264b7dd" class="bulleted-list"><li style="list-style-type:disc"><strong>구글시트 API를 활용하여 인증, 데이터 동기화, 스타일링 및 수식 자동 적용 등 업무자동화</strong> 경험을 쌓았습니다.</li></ul><ul id="23ba2715-629b-8023-9a1a-d77910204ca6" class="bulleted-list"><li style="list-style-type:disc">다양한 데이터 형식을 가공할 때 기본적인 예외처리에서 나아가 네트워크 및 API 오류 대응력을 높일 필요가 있습니다.</li></ul><h3 id="23ba2715-629b-8058-9e93-f38a11c8866e" class=""><mark class="highlight-teal">실용적인 GUI 설계</mark> → <mark class="highlight-brown">웹 버전</mark></h3><ul id="23ba2715-629b-8048-bd40-c3bbe6fd69ab" class="bulleted-list"><li style="list-style-type:disc"><strong>사용자 친화적이고 직관적인 GUI 설계</strong>로 업무자동화 편의성을 높이는 방향으로 설계하였습니다.</li></ul><ul id="23ba2715-629b-80d7-9c19-fbed332d5f05" class="bulleted-list"><li style="list-style-type:disc">웹 버전으로 확장하여, 다양한 사용자 환경과 플랫폼에서 접근성과 사용성을 높이는 개선할 예정입니다.</li></ul><hr id="23ba2715-629b-8072-a128-f415c410ccd4" style="page-break-after: always; visibility: hidden !important;" /><h1 id="23ba2715-629b-8024-8043-dd23b35ee689" class="">웹 크롤링 &amp; <strong>실시간 상품 가격 및 재고 업데이터</strong></h1><div id="23ca2715-629b-8011-9cad-c29fedb41c72" class="column-list"><div id="23ca2715-629b-800c-b5e0-e93ac8901827" style="width:68.75%" class="column"><blockquote id="23ba2715-629b-80a8-80a3-d66b3f250912" class=""><strong>Python</strong>을 기반으로 Excel 파일에서 상품 데이터를 읽어들이고, <strong>웹 크롤링을 통해 실시간 가격과 재고 정보를 수집</strong>한 후, 이를 가공하여 다양한 <strong>e-commerce 플랫폼(쿠팡, 스마트스토어 등)의 API</strong>를 통해 업데이트<strong><br/><br/></strong>기간 : 2024.02 ~ 2024.08 <br/>개인프로젝트<br/>GitHub : <br/><a href="https://github.com/goottjason/python-product-uploader">https://github.com/goottjason/python-product-uploader</a></blockquote><h2 id="23ba2715-629b-8050-a64e-f7545f65d923" class="">사용스택</h2><p id="23ba2715-629b-80a0-921a-efd325acbbcc" class=""><code><strong>Python</strong></code><strong> </strong><code><strong>BeautifulSoup</strong></code><strong> </strong><code><strong>Selenium</strong></code><strong> </strong><code><strong>Openpyxl</strong></code><strong> </strong><code><strong>Pandas</strong></code></p><p id="23ba2715-629b-80ff-8762-e0734afe165f" class=""><code><strong>Coupang API</strong></code><strong> </strong><code><strong>Naver API</strong></code><strong> </strong><code><strong>ESM API</strong></code><strong> </strong><code><strong>11st API</strong></code></p></div><div id="23ca2715-629b-8020-980a-db24ee2fb365" style="width:31.25%" class="column"><figure id="23ca2715-629b-807a-930f-e96512ef6e7a" class="image"><a href="image%204.png"><img style="width:1333.987548828125px" src="image%204.png"/></a></figure></div></div><h2 id="23ba2715-629b-80e9-8ccf-c75f59410d42" class=""><strong>주요 기능</strong></h2><ul id="23ba2715-629b-8031-96a7-d9d7bb930459" class="bulleted-list"><li style="list-style-type:disc"><strong>Excel 데이터 읽기</strong>: openpyxl과 pandas를 활용하여 입력 Excel 파일에서 상품 링크와 기본 정보를 로드합니다.</li></ul><ul id="23ba2715-629b-8022-8b04-ccee80589330" class="bulleted-list"><li style="list-style-type:disc"><strong>웹 크롤링</strong>: selenium과 beautifulSoup으로 각 상품 링크를 방문하여 실시간 가격과 재고 데이터를 추출합니다. 동적 콘텐츠 처리를 위해 브라우저 자동화가 적용되었습니다.</li></ul><ul id="23ba2715-629b-8050-b979-eba0e9447215" class="bulleted-list"><li style="list-style-type:disc"><strong>데이터 가공</strong>: 수집된 데이터를 정리, 필터링, 계산(예: 마진율 계산)합니다.</li></ul><ul id="23ba2715-629b-80c7-a92e-e971c51cfe5d" class="bulleted-list"><li style="list-style-type:disc"><strong>API 업데이트</strong>: 가공된 데이터를 쿠팡, 스마트스토어 등의 플랫폼 API로 전송하여 가격과 재고를 실시간으로 업데이트합니다. 오류 처리와 재시도 로직을 포함합니다.</li></ul><h2 id="23ba2715-629b-80b5-ba5b-c7708d4c5652" class=""><strong>프로젝트를 통해 얻은 점과 보완할 점</strong></h2><ul id="23ba2715-629b-809a-8bd9-e91ee3e459a3" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal"><strong>기술 스킬 향상</strong></mark>: <strong>웹 크롤링(selenium, beautifulSoup)과 데이터 처리(pandas)</strong>의 실전 적용을 통해 Python의 다재다능함을 체득했습니다. 특히, <strong>동적 웹 페이지 처리와 API 연동에서 문제 해결 능력</strong>이 강화되었습니다.</li></ul><ul id="23ba2715-629b-8010-b45e-de1bca41f95a" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal"><strong>자동화의 효율성</strong></mark>: <strong>수동 작업을 자동화</strong>함으로써 시간 절감의 가치를 깨달았으며, e-commerce 분야에서 변화에 빠른 대응의 중요성을 체험했습니다.</li></ul><ul id="23ba2715-629b-8020-8f4f-f7d3b5784ac6" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal"><strong>프로젝트 관리 경험</strong></mark>: 주기적으로 변동하는 웹페이지에 대응하기 위해 <strong>코드 모듈화와 에러 핸들링을 통해 유지보수성 높은 프로그램</strong>을 만드는 데 초점을 맞췄습니다.</li></ul><ul id="23ca2715-629b-80d9-85b2-d8a042dda9fc" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-brown"><strong>사용자 편의성 강화</strong></mark>: 현재는 코드 내부를 직접 수정하고 IDE에서 실행하는 방식이므로, 입력과 실행을 더 편리하게 하기 위해 GUI를 도입하여 프로그램을 사용자 친화적으로 개선할 계획입니다.</li></ul><hr id="23ba2715-629b-8096-9c54-c974520c38c8" style="page-break-after: always; visibility: hidden !important;" /><p id="23ca2715-629b-801d-a3c5-fc1f7e405e79" class="">
+  /* cspell:disable-file */
+  /* webkit printing magic: print all background colors */
+  @media print { .page-break { break-before: page; } }
+  
+  html {
+    -webkit-print-color-adjust: exact;
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  @media only screen {
+    body {
+      margin: 2em auto;
+      max-width: 900px;
+      color: rgb(55, 53, 47);
+    }
+  }
+
+  body {
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+
+  a,
+  a.visited {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .pdf-relative-link-path {
+    font-size: 80%;
+    color: #444;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0.75em;
+  }
+
+  h1 {
+    font-size: 1.875rem;
+    margin-top: 1.875rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin-top: 1.25rem;
+  }
+
+  .source {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 1.5em;
+    word-break: break-all;
+  }
+
+  .callout {
+    border-radius: 3px;
+    padding: 1rem;
+  }
+
+  figure {
+    margin: 1.25em 0;
+    page-break-inside: avoid;
+  }
+
+  figcaption {
+    opacity: 0.5;
+    font-size: 85%;
+    margin-top: 0.5em;
+  }
+
+  mark {
+    background-color: transparent;
+  }
+
+  .indented {
+    padding-left: 1.5em;
+  }
+
+  hr {
+    background: transparent;
+    display: block;
+    width: 100%;
+    height: 1px;
+    visibility: visible;
+    border: none;
+    border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  @media only print {
+    img {
+      max-height: 100vh;
+      object-fit: contain;
+    }
+  }
+
+  @page {
+    margin: 1in;
+  }
+
+  .collection-content {
+    font-size: 0.875rem;
+  }
+
+  .column-list {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .column {
+    padding: 0 1em;
+  }
+
+  .column:first-child {
+    padding-left: 0;
+  }
+
+  .column:last-child {
+    padding-right: 0;
+  }
+
+  .table_of_contents-item {
+    display: block;
+    font-size: 0.875rem;
+    line-height: 1.3;
+    padding: 0.125rem;
+  }
+
+  .table_of_contents-indent-1 {
+    margin-left: 1.5rem;
+  }
+
+  .table_of_contents-indent-2 {
+    margin-left: 3rem;
+  }
+
+  .table_of_contents-indent-3 {
+    margin-left: 4.5rem;
+  }
+
+  .table_of_contents-link {
+    text-decoration: none;
+    opacity: 0.7;
+    border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid rgba(55, 53, 47, 0.09);
+    border-collapse: collapse;
+  }
+
+  table {
+    border-left: none;
+    border-right: none;
+  }
+
+  th,
+  td {
+    font-weight: normal;
+    padding: 0.25em 0.5em;
+    line-height: 1.5;
+    min-height: 1.5em;
+    text-align: left;
+  }
+
+  th {
+    color: rgba(55, 53, 47, 0.6);
+  }
+
+  ol,
+  ul {
+    margin: 0;
+    margin-block-start: 0.6em;
+    margin-block-end: 0.6em;
+  }
+
+  li > ol:first-child,
+  li > ul:first-child {
+    margin-block-start: 0.6em;
+  }
+
+  ul > li {
+    list-style: disc;
+  }
+
+  ul.to-do-list {
+    padding-inline-start: 0;
+  }
+
+  ul.to-do-list > li {
+    list-style: none;
+  }
+
+  .to-do-children-checked {
+    text-decoration: line-through;
+    opacity: 0.375;
+  }
+
+  ul.toggle > li {
+    list-style: none;
+  }
+
+  ul {
+    padding-inline-start: 1.7em;
+  }
+
+  ul > li {
+    padding-left: 0.1em;
+  }
+
+  ol {
+    padding-inline-start: 1.6em;
+  }
+
+  ol > li {
+    padding-left: 0.2em;
+  }
+
+  .mono ol {
+    padding-inline-start: 2em;
+  }
+
+  .mono ol > li {
+    text-indent: -0.4em;
+  }
+
+  .toggle {
+    padding-inline-start: 0em;
+    list-style-type: none;
+  }
+
+  /* Indent toggle children */
+  .toggle > li > details {
+    padding-left: 1.7em;
+  }
+
+  .toggle > li > details > summary {
+    margin-left: -1.1em;
+  }
+
+  .selected-value {
+    display: inline-block;
+    padding: 0 0.5em;
+    background: rgba(206, 205, 202, 0.5);
+    border-radius: 3px;
+    margin-right: 0.5em;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    white-space: nowrap;
+  }
+
+  .collection-title {
+    display: inline-block;
+    margin-right: 1em;
+  }
+
+  .page-description {
+    margin-bottom: 2em;
+  }
+
+  .simple-table {
+    margin-top: 1em;
+    font-size: 0.875rem;
+    empty-cells: show;
+  }
+  .simple-table td {
+    height: 29px;
+    min-width: 120px;
+  }
+
+  .simple-table th {
+    height: 29px;
+    min-width: 120px;
+  }
+
+  .simple-table-header-color {
+    background: rgb(247, 246, 243);
+    color: black;
+  }
+  .simple-table-header {
+    font-weight: 500;
+  }
+
+  time {
+    opacity: 0.5;
+  }
+
+  .icon {
+    display: inline-block;
+    max-width: 1.2em;
+    max-height: 1.2em;
+    text-decoration: none;
+    vertical-align: text-bottom;
+    margin-right: 0.5em;
+  }
+
+  img.icon {
+    border-radius: 3px;
+  }
+
+  .user-icon {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 100%;
+    margin-right: 0.5rem;
+  }
+
+  .user-icon-inner {
+    font-size: 0.8em;
+  }
+
+  .text-icon {
+    border: 1px solid #000;
+    text-align: center;
+  }
+
+  .page-cover-image {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    max-height: 30vh;
+  }
+
+  .page-header-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-header-icon-with-cover {
+    margin-top: -0.72em;
+    margin-left: 0.07em;
+  }
+
+  .page-header-icon img {
+    border-radius: 3px;
+  }
+
+  .link-to-page {
+    margin: 1em 0;
+    padding: 0;
+    border: none;
+    font-weight: 500;
+  }
+
+  p > .user {
+    opacity: 0.5;
+  }
+
+  td > .user,
+  td > time {
+    white-space: nowrap;
+  }
+
+  input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 0.6em;
+    vertical-align: middle;
+  }
+
+  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .image {
+    border: none;
+    margin: 1.5em 0;
+    padding: 0;
+    border-radius: 0;
+    text-align: center;
+  }
+
+  .code,
+  code {
+    background: rgba(135, 131, 120, 0.15);
+    border-radius: 3px;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 85%;
+    tab-size: 2;
+  }
+
+  code {
+    color: #eb5757;
+  }
+
+  .code {
+    padding: 1.5em 1em;
+  }
+
+  .code-wrap {
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .code > code {
+    background: none;
+    padding: 0;
+    font-size: 100%;
+    color: inherit;
+  }
+
+  blockquote {
+    font-size: 1.25em;
+    margin: 1em 0;
+    padding-left: 1em;
+    border-left: 3px solid rgb(55, 53, 47);
+  }
+
+  .bookmark {
+    text-decoration: none;
+    max-height: 8em;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .bookmark-title {
+    font-size: 0.85em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 1.75em;
+    white-space: nowrap;
+  }
+
+  .bookmark-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bookmark-info {
+    flex: 4 1 180px;
+    padding: 12px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .bookmark-image {
+    width: 33%;
+    flex: 1 1 180px;
+    display: block;
+    position: relative;
+    object-fit: cover;
+    border-radius: 1px;
+  }
+
+  .bookmark-description {
+    color: rgba(55, 53, 47, 0.6);
+    font-size: 0.75em;
+    overflow: hidden;
+    max-height: 4.5em;
+    word-break: break-word;
+  }
+
+  .bookmark-href {
+    font-size: 0.75em;
+    margin-top: 0.25em;
+  }
+
+  .sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+  .code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+  .serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+  .mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+  .pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+  .pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+  .pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+  .pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+  .pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+  .pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+  .pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+  .pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+  .pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+  .pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+  .pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+  .pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+  .pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+  .pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+  .pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+  .pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+  .highlight-default {
+    color: rgba(50, 48, 44, 1);
+  }
+  .highlight-gray {
+    color: rgba(115, 114, 110, 1);
+    fill: rgba(115, 114, 110, 1);
+  }
+  .highlight-brown {
+    color: rgba(159, 107, 83, 1);
+    fill: rgba(159, 107, 83, 1);
+  }
+  .highlight-orange {
+    color: rgba(217, 115, 13, 1);
+    fill: rgba(217, 115, 13, 1);
+  }
+  .highlight-yellow {
+    color: rgba(203, 145, 47, 1);
+    fill: rgba(203, 145, 47, 1);
+  }
+  .highlight-teal {
+    color: rgba(68, 131, 97, 1);
+    fill: rgba(68, 131, 97, 1);
+  }
+  .highlight-blue {
+    color: rgba(51, 126, 169, 1);
+    fill: rgba(51, 126, 169, 1);
+  }
+  .highlight-purple {
+    color: rgba(144, 101, 176, 1);
+    fill: rgba(144, 101, 176, 1);
+  }
+  .highlight-pink {
+    color: rgba(193, 76, 138, 1);
+    fill: rgba(193, 76, 138, 1);
+  }
+  .highlight-red {
+    color: rgba(205, 60, 58, 1);
+    fill: rgba(205, 60, 58, 1);
+  }
+  .highlight-default_background {
+    color: rgba(50, 48, 44, 1);
+  }
+  .highlight-gray_background {
+    background: rgba(248, 248, 247, 1);
+  }
+  .highlight-brown_background {
+    background: rgba(244, 238, 238, 1);
+  }
+  .highlight-orange_background {
+    background: rgba(251, 236, 221, 1);
+  }
+  .highlight-yellow_background {
+    background: rgba(251, 243, 219, 1);
+  }
+  .highlight-teal_background {
+    background: rgba(237, 243, 236, 1);
+  }
+  .highlight-blue_background {
+    background: rgba(231, 243, 248, 1);
+  }
+  .highlight-purple_background {
+    background: rgba(248, 243, 252, 1);
+  }
+  .highlight-pink_background {
+    background: rgba(252, 241, 246, 1);
+  }
+  .highlight-red_background {
+    background: rgba(253, 235, 236, 1);
+  }
+  .block-color-default {
+    color: inherit;
+    fill: inherit;
+  }
+  .block-color-gray {
+    color: rgba(115, 114, 110, 1);
+    fill: rgba(115, 114, 110, 1);
+  }
+  .block-color-brown {
+    color: rgba(159, 107, 83, 1);
+    fill: rgba(159, 107, 83, 1);
+  }
+  .block-color-orange {
+    color: rgba(217, 115, 13, 1);
+    fill: rgba(217, 115, 13, 1);
+  }
+  .block-color-yellow {
+    color: rgba(203, 145, 47, 1);
+    fill: rgba(203, 145, 47, 1);
+  }
+  .block-color-teal {
+    color: rgba(68, 131, 97, 1);
+    fill: rgba(68, 131, 97, 1);
+  }
+  .block-color-blue {
+    color: rgba(51, 126, 169, 1);
+    fill: rgba(51, 126, 169, 1);
+  }
+  .block-color-purple {
+    color: rgba(144, 101, 176, 1);
+    fill: rgba(144, 101, 176, 1);
+  }
+  .block-color-pink {
+    color: rgba(193, 76, 138, 1);
+    fill: rgba(193, 76, 138, 1);
+  }
+  .block-color-red {
+    color: rgba(205, 60, 58, 1);
+    fill: rgba(205, 60, 58, 1);
+  }
+  .block-color-default_background {
+    color: inherit;
+    fill: inherit;
+  }
+  .block-color-gray_background {
+    background: rgba(248, 248, 247, 1);
+  }
+  .block-color-brown_background {
+    background: rgba(244, 238, 238, 1);
+  }
+  .block-color-orange_background {
+    background: rgba(251, 236, 221, 1);
+  }
+  .block-color-yellow_background {
+    background: rgba(251, 243, 219, 1);
+  }
+  .block-color-teal_background {
+    background: rgba(237, 243, 236, 1);
+  }
+  .block-color-blue_background {
+    background: rgba(231, 243, 248, 1);
+  }
+  .block-color-purple_background {
+    background: rgba(248, 243, 252, 1);
+  }
+  .block-color-pink_background {
+    background: rgba(252, 241, 246, 1);
+  }
+  .block-color-red_background {
+    background: rgba(253, 235, 236, 1);
+  }
+  .select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+  .select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+  .select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+  .select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+  .select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+  .select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+  .select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+  .select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+  .select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+  .select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+  .checkbox {
+    display: inline-flex;
+    vertical-align: text-bottom;
+    width: 16;
+    height: 16;
+    background-size: 16px;
+    margin-left: 2px;
+    margin-right: 5px;
+  }
+
+  .checkbox-on {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+  }
+
+  .checkbox-off {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+  }
+
+</style></head><body><article id="23ba2715-629b-802b-b15a-c352c76c4b85" class="page sans"><header><h1 class="page-title">JONGWON KIM</h1><p class="page-description"></p></header><div class="page-body"><div id="23fa2715-629b-805a-a5ed-c195e9ddac62" class="column-list"><div id="23fa2715-629b-803f-bfee-cf574adbd1f5" style="width:50%" class="column"><figure id="23fa2715-629b-80af-8e46-d1046909c851" class="image"><a href="image.png"><img style="width:240px" src="image.png"/></a></figure><h1 id="23fa2715-629b-80be-8c51-f599b2644c83" class=""><strong>김종원</strong></h1><h3 id="23fa2715-629b-80f7-b10a-fd32f11f5562" class="">📞 010-2787-8712<br/>📧 goottjason@gmail.com<br/></h3><p id="23fa2715-629b-8034-9ae5-dd4c968c445b" class="">
+</p></div><div id="23fa2715-629b-8093-9105-c5327bc028a8" style="width:50.00000000000004%" class="column"><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="23fa2715-629b-8044-af40-ce555b42eb58"><div style="width:100%"><p id="23fa2715-629b-80e1-85f4-c069d6cc6811" class=""><strong>- JAVA 웹서비스와 CI/CD 자동화<br/>   ㄴ 우수 수료, 구트아카데미<br/>- (전) 온라인구매대행업 대표<br/>- 정보처리기사<br/>- 성균관대 경제학 졸업<br/>- 한국디지털미디어고 이비즈니스과<br/></strong></p></div></figure><figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex" id="23ca2715-629b-807d-baee-e1018cd4eefc"><div style="width:100%"><p id="23fa2715-629b-80ec-8921-cd66c61522a0" class="">개발에서 성취감을 느끼고 늦게 시작했지만<br/>그래서 더 에너지 있는 88년생 김종원입니다.<br/>몰입하면 시간 가는 줄 모르고 일에 집중하며,<br/>신뢰와 책임감을 가장 중요한 가치로 여깁니다.<br/>주변에서는 맡은 일을 꼼꼼하게 해내는,<br/>믿을 수 있는 사람으로 평가합니다.<br/></p></div></figure></div></div><p id="23fa2715-629b-8040-81ba-fbb5f5f723a6" class="">
+</p><table id="23ca2715-629b-8010-934e-fe26dafde4a6" class="simple-table"><thead class="simple-table-header"><tr id="23ca2715-629b-808e-97c5-ca6eaeee7502"><th id="wX_Z" class="simple-table-header-color simple-table-header" style="width:173.73959350585938px">Skill</th><th id="^bJw" class="simple-table-header-color simple-table-header" style="width:219.58334350585938px">Level</th><th id="A[vS" class="simple-table-header-color simple-table-header" style="width:535.0104370117188px">Details</th></tr></thead><tbody><tr id="23ca2715-629b-80f5-b0fa-e386e9d27042"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>Java / Spring</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">Legacy 및 Boot 기본 환경설정 | 기본 문법 숙지 및 예외처리<br/>컬렉션프레임워크 | 웹크롤링 | API 요청 및 응답 | 객체지향 및 MVC패턴<br/></td></tr><tr id="23ca2715-629b-8065-bc65-e368da6495e6"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>Python</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩⬜⬜⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">Anaconda 가상환경설정 | 기본 문법, 리스트컴프리헨션 및 람다함수 숙지<br/>웹크롤링(Selenium) | 파싱(BeautifulSoup) | GUI 프로그램 구현 가능<br/></td></tr><tr id="23ca2715-629b-8079-9ba7-d9196dac3406"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>Javascript / jQuery</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">API 요청 및 응답 | 유효성검사 및 이벤트 제어 | 테이블, 차트 등 뷰 렌더링</td></tr><tr id="23ca2715-629b-809c-b012-d23d54b5af2f"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>HTML</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">HTML (시멘틱) 태그 | 폼 요소로 사용자 입력 처리</td></tr><tr id="23ca2715-629b-80a3-a838-e7ad05feb3c1"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>CSS</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩⬜⬜⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">호버, 포커스, 색상, 폰트 마진, 패딩 스타일</td></tr><tr id="23ca2715-629b-8097-9798-dccf58f9512b"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>Thymeleaf / JSP</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">동적 데이터 출력, 반복문, 조건문, 폼처리 기능 및 레이아웃 템플릿 구성</td></tr><tr id="23ca2715-629b-8031-aa8f-d76a9a1a0350"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>My-SQL / Oracle</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">SQL 문법(CRUD) | 테이블 생성, 인덱스 및 기본 제약조건 설정<br/>데이터집계함수, JOIN, GROUP BY, ORDER BY 등 복합쿼리 및 서브쿼리<br/></td></tr><tr id="23ca2715-629b-803b-935b-d497bd594ddd"><td id="wX_Z" class="" style="width:173.73959350585938px"><strong>Docker / Actions</strong></td><td id="^bJw" class="" style="width:219.58334350585938px">🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜</td><td id="A[vS" class="" style="width:535.0104370117188px">이미지, 컨테이너, Dockerfile 이해 및 컨테이너 구동 경험<br/>Docker, GitHub Actions를 통한 간단한 CI/CD 파이프라인 구축 경험<br/></td></tr></tbody></table><h1 id="23ca2715-629b-8034-9cbe-f06dc7972e37" class="">PORTFOLIO</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23ba2715-629b-80c4-bb88-e309f385cb65"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><p id="23ba2715-629b-809b-aaba-ccc313ad1bdb" class=""><strong>INDEX</strong></p><ol type="1" id="23ba2715-629b-80aa-87ec-e03e57f9702b" class="numbered-list" start="1"><li><strong>LMS : 학습관리시스템 (교육생·강사·관리자)</strong></li></ol><ol type="1" id="23ba2715-629b-80ae-860a-ec1d76527adc" class="numbered-list" start="2"><li><strong>할일관리(To-Do) 및 커뮤니티 플랫폼</strong></li></ol><ol type="1" id="23ba2715-629b-80f9-b7c3-fde51f73cc00" class="numbered-list" start="3"><li><strong>주문정리 GUI 프로그램</strong></li></ol><ol type="1" id="23ba2715-629b-801a-a426-fb3fbac1717e" class="numbered-list" start="4"><li><strong>웹 크롤링 &amp; 실시간 상품 가격 및 재고 업데이터</strong></li></ol></div></figure><hr style="page-break-after: always; visibility: hidden !important;" id="23ba2715-629b-8015-ab95-c387193edfd2"/><h1 id="23ba2715-629b-80b0-93d0-f841a57dad1b" class="">🥇<strong>LMS 학습관리시스템 (교육생, 강사, 관리자)</strong></h1><div id="23ba2715-629b-8040-8636-c1e270aba1f6" class="column-list"><div id="23ba2715-629b-80f5-98a8-d9f7a3940320" style="width:50%" class="column"><blockquote id="23ba2715-629b-80b3-894e-f89a2a840fc5" class=""><strong>고용노동부 K-디지털 훈련과정을 타겟으로 관리자·강사·교육생 역할 맞춤형 LMS 시스템 구축</strong><br/>기간 : 2025.05 ~ 2025.07 <br/>인원 : 7명(팀프로젝트)<br/><br/><a href="https://github.com/alkali55/lms">GitHub(lms)</a></blockquote><h2 id="23ba2715-629b-80a9-89a2-e425ff351075" class="">사용스택</h2><p id="23ba2715-629b-80db-b7ca-e30bb443902a" class=""><code><strong>Java</strong></code><strong> </strong><code><strong>Spring Boot</strong></code><strong> </strong><code><strong>MyBatis</strong></code><strong> | </strong><code><strong>Thymeleaf</strong></code><strong> </strong><code><strong>jQuery</strong></code><strong>  </strong><code><strong>Javascript</strong></code><strong> </strong><code><strong>Bootstrap</strong></code><strong> | </strong><code><strong>GitHub Actions</strong></code><strong> </strong><code><strong>AWS EC2</strong></code><strong> </strong></p><p id="23fa2715-629b-8079-9a36-db37f782a75e" class="">
+</p></div><div id="23fa2715-629b-8061-9ed6-e7e11d341ff8" style="width:50.00000000000002%" class="column"><figure id="23ba2715-629b-803f-9cc6-ca4569279d9b" class="image"><a href="image%201.png"><img style="width:240px" src="image%201.png"/></a></figure><h2 id="23ca2715-629b-803f-8ed3-f4e1e9b86f44" class="">더 자세히 보기</h2><ul id="23fa2715-629b-80f1-a45f-e6221c25d4e1" class="bulleted-list"><li style="list-style-type:disc"><a href="https://goottjason.github.io/static/portfolio/files/lms_erd.pdf">ER-Diagram PDF 다운로드 📎</a></li></ul><ul id="23ca2715-629b-80d9-a362-e8de59cae694" class="bulleted-list"><li style="list-style-type:disc"><a href="https://goottjason.github.io/static/portfolio/files/lms_pt.pdf">발표 PDF 다운로드 📎</a></li></ul><ul id="23ca2715-629b-809a-a637-f60c52ab4ad1" class="bulleted-list"><li style="list-style-type:disc"><a href="https://goottjason.github.io/static/portfolio/files/lms_capture.mp4">각 페이지 별 시연 영상 다운로드 📎</a></li></ul></div></div><h2 id="23ba2715-629b-80c5-9fea-f54dca7ebcf6" class="">담당</h2><ul id="23ba2715-629b-805e-b253-e7746731f977" class="bulleted-list"><li style="list-style-type:disc"><strong>데이터베이스를 설계</strong>하고 ERD를 완성하였습니다.</li></ul><ul id="23ba2715-629b-807b-9444-f45f53e53e12" class="bulleted-list"><li style="list-style-type:disc">사용자 권한에 따라 구분하여 과정 전반의 정보를 제공하는 <strong>REST API를 구현</strong>하였습니다.</li></ul><ul id="23ba2715-629b-80eb-a1a7-eec6eb0deeee" class="bulleted-list"><li style="list-style-type:disc"><strong>DB(MyBatis)부터 백엔드(Java, Spring Boot), 프론트엔드(Thymeleaf, jQuery, Javascript)까지 전체 개발 영역을 아울러 주요 페이지를 완성</strong>하였습니다.<ul id="23ba2715-629b-80b5-94f3-dfef49cf1123" class="bulleted-list"><li style="list-style-type:circle">담당 페이지 : 과정관리, 교육생배정, 교육생관리, 교직원관리, 강의실관리, 관리자 대시보드 등</li></ul></li></ul><h2 id="23ba2715-629b-809e-9c60-fed1dd84a44c" class="">프로젝트를 통해 얻은 점과 보완할 점</h2><h3 id="23ba2715-629b-8067-bebd-eb8ade6cff68" class=""><mark class="highlight-teal">REST API 구현과 성능개선</mark> → <mark class="highlight-brown">RESTFul API, Swagger UI</mark></h3><ul id="23ba2715-629b-8008-b0a3-fbfdda59beed" class="bulleted-list"><li style="list-style-type:disc">REST API를 직접 설계하며 <strong>JSON 데이터에 대한 이해</strong>를 높이고, <strong>성능 개선</strong>을 위해 <strong>쿼리 최적화와 referer를 활용한 차등 조회 기법</strong>을 배웠습니다. 실제 데이터를 빠르고 효과적으로 전달해보면서 실무에서 API의 중요성을 체감했습니다.</li></ul><ul id="23ba2715-629b-8000-b9c9-f2477bced4bd" class="bulleted-list"><li style="list-style-type:disc">앞으로는 REST 아키텍처의 원칙을 더 엄격히 준수한 RESTFul API를 설계해보고, Swagger UI와 같은 문서화 도구를 더 적극적으로 활용하여 API의 가독성과 협업 효율성을 높이는 부분을 더 보완하려고 합니다.</li></ul><h3 id="23ba2715-629b-8066-bc5a-f1cb17276814" class=""><mark class="highlight-teal">DB 설계와 SQL Mapper 프레임워크 사용</mark> → <mark class="highlight-brown">JPA ORM 프레임워크</mark></h3><ul id="23ba2715-629b-8033-a048-f717e3bdb87f" class="bulleted-list"><li style="list-style-type:disc">직접 <strong>테이블 모델링</strong>을 하고, <strong>MyBatis</strong> 기반의 SQL 매퍼 프레임워크를 통해 <strong>SQL 쿼리를 효율적으로 관리</strong>하며 데이터 흐름을 명확히 파악할 수 있었습니다.</li></ul><ul id="23ba2715-629b-8036-9302-ea8189df6c5c" class="bulleted-list"><li style="list-style-type:disc">추후에는 JPA와 같은 ORM을 학습·적용해 객체지향적으로 데이터베이스 연동을 구현함으로써, 코드의 생산성을 높이고 DB 종속성도 완화할 수 있도록 개선할 계획입니다.</li></ul><h3 id="23ba2715-629b-8059-b37a-f21466ca6476" class=""><mark class="highlight-teal">Notion으로 설계부터 개발까지 협업 사이클 경험</mark> → <mark class="highlight-brown">Jira, Slack</mark></h3><ul id="23ba2715-629b-803e-ad4e-dba0a4c0a62e" class="bulleted-list"><li style="list-style-type:disc"><strong>Notion</strong>을 통한 프로젝트 <strong>문서화(기능명세서, 와이어프레임, 플로우차트, 칸반보드 등)와 업무 분담, 일정 관리</strong> 등 설계~개발 전 과정을 체계적으로 관리하면서 협업의 중요성과 팀워크를 배울 수 있었습니다. → <a href="https://www.notion.so/1ede9988a01e80e38642ee641c601765?pvs=21">노션문서 링크 📎</a></li></ul><ul id="23ba2715-629b-80e3-9dee-db9068108e89" class="bulleted-list"><li style="list-style-type:disc">다음에는 Jira, Slack 등 더 전문적인 협업 및 이슈 트래킹 툴을 도입해 실무 현장에 가까운 소통과 워크플로우, 자동화된 관리 체계를 경험해보고자 합니다. </li></ul><h3 id="23ba2715-629b-8025-bde9-e5e947c5afa9" class=""><mark class="highlight-teal">사용자 중심의 UI/UX와 기획 참여</mark> → <mark class="highlight-brown">React, Next.JS</mark></h3><ul id="23ba2715-629b-80f4-a1e4-fe842441ff13" class="bulleted-list"><li style="list-style-type:disc">서비스 사용자를 고려한 <strong>화면 설계, 인터페이스 개선, 기획</strong>에 직접 참여함으로써 <strong>실질적인 사용자 경험 개선 방안</strong>을 고민해볼 수 있었습니다.</li></ul><ul id="23ba2715-629b-80ef-85a5-c27ecc9b5fe7" class="bulleted-list"><li style="list-style-type:disc">앞으로는 React, Next.js 등 최신 프론트엔드 프레임워크를 익혀 더욱 모던하고 반응형 UI, 빠른 렌더링 및 SEO 최적화까지 구현할 수 있도록 역량을 확장할 계획입니다.</li></ul><hr style="page-break-after: always; visibility: hidden !important;" id="23ba2715-629b-80d2-b355-f740f5992e17"/><h1 id="23ba2715-629b-8070-9bf3-f990e3365d9b" class="">⌚할일관리(To-Do) 및 커뮤니티 플랫폼</h1><div id="23ba2715-629b-8022-848d-ed30a7f3ab34" class="column-list"><div id="23ba2715-629b-8086-8190-ed2fbd21e1e2" style="width:50%" class="column"><blockquote id="23ba2715-629b-8088-b09d-c6f31742cb55" class="">기간 : 2025.03 ~ 2025.04 <br/>개인프로젝트<br/><br/><a href="https://github.com/goottjason/diarytodo">GitHub(diarytodo)</a></blockquote><h2 id="23ba2715-629b-80ce-8d99-c6b17d37ab3d" class="">사용스택</h2><p id="23ba2715-629b-801b-a520-c6caef760bb5" class=""><code><strong>Java</strong></code><strong>  </strong><code><strong>Spring Boot</strong></code><strong> </strong><code><strong>MyBatis</strong></code><strong>  </strong></p><p id="23ba2715-629b-807e-b52e-e541fb2c351b" class=""><code><strong>Thymeleaf</strong></code><strong> </strong><code><strong>jQuery</strong></code><strong>  </strong><code><strong>Javascript</strong></code><strong> </strong><code><strong>Bootstrap</strong></code><strong> </strong></p><p id="23ba2715-629b-804a-91aa-ce85e509336e" class=""><code><strong>Cafe24</strong></code><strong>  </strong></p></div><div id="23ba2715-629b-804e-8b06-e7880a30e931" style="width:50%" class="column"><figure id="23ba2715-629b-8081-a465-e1fc898cbe1c" class="image"><a href="image%202.png"><img style="width:617.2916870117188px" src="image%202.png"/></a></figure></div></div><h2 id="23ba2715-629b-8090-8342-ec86b92bb0a1" class="">주요 기능</h2><ul id="23ba2715-629b-80ae-8437-e553bed7b3ec" class="bulleted-list"><li style="list-style-type:disc">회원가입, 로그인한 회원은 <strong>할일(To-Do)을 기록하고 중요도, 날짜, 완료여부로 정렬, 필터링하여 관리</strong>가 가능합니다.</li></ul><ul id="23ba2715-629b-80a8-af5a-f17420e4a1b2" class="bulleted-list"><li style="list-style-type:disc">회원 간에 서비스에 대한 소통과 피드백이 가능하도록 <strong>계층형 및 댓글형 게시판</strong>을 제공합니다.</li></ul><h2 id="23ba2715-629b-804e-8038-fa0ad4e737c6" class="">프로젝트를 통해 얻은 점과 보완할 점</h2><h3 id="23ba2715-629b-805c-bf06-db86890f3267" class=""><mark class="highlight-teal">회원가입, 로그인, 사용자관리 기능 구현</mark> → <mark class="highlight-brown">Spring Security</mark></h3><ul id="23ba2715-629b-80b8-bbdd-fcac81c37d55" class="bulleted-list"><li style="list-style-type:disc"><strong>회원가입, 로그인, 사용자 관리의 기본적인 개발 사이클과 이에 필요한 테이블 설계 및 흐름</strong>을 익히면서, <strong>사용자 인증과 권한 관리의 구조를 이해</strong>할 수 있었습니다. 실제 서비스에서 사용자 정보를 어떻게 체계적으로 관리하는지 실무 감각을 키웠습니다.</li></ul><ul id="23ba2715-629b-8021-91b4-d6e348cd0b14" class="bulleted-list"><li style="list-style-type:disc">앞으로는 Spring Security를 도입해 보안 관련 기본 기능을 강화하고, OAuth2, JWT 토큰 기반 인증, 그리고 소셜 로그인 연동 같은 고급 인증 방식을 적용해 보는 것이 필요합니다. 이를 통해 보안성을 높이고 보다 사용자 친화적인 인증 시스템을 구축할 수 있을 것입니다.</li></ul><h3 id="23ba2715-629b-805f-8281-da3a4eba48fc" class=""><mark class="highlight-teal">Kakao Map API 및 Naver E-Mail API 사용</mark> → <mark class="highlight-brown">Google Map API,  SMS API </mark></h3><ul id="23ba2715-629b-80a3-b8a6-d3590b2af189" class="bulleted-list"><li style="list-style-type:disc"><strong>Kakao Map API를 통해 위치 기반 서비스</strong> 구현 방법을 경험했고,<strong> Naver E-Mail API를 활용해 이메일 발송 기능</strong>을 연동하는 실무 통합 경험을 쌓았습니다. 이를 통해 외부 API와의 연동 방식과 인증, 데이터 처리 흐름을 익혔습니다.</li></ul><ul id="23ba2715-629b-8077-9213-f0d8c9216e63" class="bulleted-list"><li style="list-style-type:disc">앞으로는 Google Map API와 SendGrid, Twilio 같은 다양한 E-Mail 및 SMS API를 학습해 활용 범위를 넓히고, API 선택 시 비용 효율성, 신뢰성, 기능적 차이점 등을 고려하며 서비스 확장성과 안정성을 더욱 향상시키는 것이 바람직합니다. 다양한 통신 채널을 연동해 사용자 커뮤니케이션을 강화하는 방향으로 나아가면 좋겠습니다.</li></ul><hr style="page-break-after: always; visibility: hidden !important;" id="23ba2715-629b-80d4-8af1-dea6a4e76982"/><h1 id="23ba2715-629b-80b8-b3c8-c1ae2d9a2783" class="">⚙️주문정리 GUI 프로그램</h1><div id="23ba2715-629b-80ca-9b60-c4222197cc97" class="column-list"><div id="23ba2715-629b-80f1-805d-c952333b7815" style="width:62.5%" class="column"><blockquote id="23ba2715-629b-80fb-9c47-e46bb0f2d9ef" class=""><strong>e-commerce 플랫폼(쿠팡, 스마트스토어 등)의 주문 데이터(Excel 파일)를 가공하여 주문관리 구글 시트에 자동 업로드</strong><br/>기간 : 2025.02 ~ 2025.02 <br/>개인프로젝트<br/>GitHub : <br/><a href="https://github.com/goottjason/python-order-combiner">https://github.com/goottjason/python-order-combiner</a></blockquote><h2 id="23ca2715-629b-80fe-82cb-c2cd2c02d7d4" class="">사용스택</h2><p id="23ba2715-629b-80e7-9e8f-f5ebff40c23c" class=""><code><strong>Python</strong></code><strong> </strong><code><strong>pandas</strong></code><strong> </strong><code><strong>tkinter</strong></code><strong> </strong><code><strong>openpyxl</strong></code><strong> </strong></p><p id="23ba2715-629b-800e-be7a-cdbb25f10d3d" class=""><code><strong>Google Sheets API</strong></code><strong> </strong></p><p id="23ba2715-629b-80a3-8db3-dc9b8657991b" class="">
+</p></div><div id="23ba2715-629b-809e-b024-e1ddd7dd758b" style="width:37.49999999999999%" class="column"><figure id="23ba2715-629b-80d4-abfe-e3eb67d4704a" class="image"><a href="image%203.png"><img style="width:641.9791870117188px" src="image%203.png"/></a></figure></div></div><h2 id="23ba2715-629b-8094-aa5b-cc65f8143905" class="">주요 기능</h2><ul id="23ca2715-629b-8009-b300-f76b1c2e2157" class="bulleted-list"><li style="list-style-type:disc"><strong>Excel 데이터 로드 및 가공</strong>: pandas와 openpyxl을 활용해 다양한 e-commerce 플랫폼(쿠팡, 스마트스토어 등)의 Excel 파일을 읽어들입니다. 컬럼 매핑, 데이터 정제(형식 변경, NaN 처리, 공백 제거), 계산 로직(순수익 = 결제액 * 0.89 올림, 수량 조정) 등을 수행합니다. 상품목록 구글 시트에서 상품 정보를 매칭해 영문명, 링크, 상품코드 등을 추가합니다.</li></ul><ul id="23ca2715-629b-80a7-8ea6-d0b58373a95c" class="bulleted-list"><li style="list-style-type:disc"><strong>Google Sheets API를 통한 데이터 동기화</strong>: Sheets에서 기존 주문번호를 조회해 중복을 검사한 후, 신규 데이터만 append합니다. API 인증(Credentials)과 batchUpdate를 사용해 동적 수식 적용(예: HYPERLINK로 조회 링크 생성, 총비용 = 구매비 + 배송비, 순손익 = 순수익 - 총비용)과 스타일링(배경색, 테두리, 통화 서식)을 자동화합니다.</li></ul><ul id="23ca2715-629b-802a-9ad5-d396b86d8e20" class="bulleted-list"><li style="list-style-type:disc"><strong>사용자 친화적 GUI 인터페이스</strong>: tkinter로 플랫폼별 파일 선택 버튼, 드래그앤드롭, 로그 출력 창(실시간 진행 상황 표시), 실행/초기화 버튼을 구현합니다. 멀티스레딩(threading)으로 UI가 멈추지 않게 처리합니다.</li></ul><ul id="23ca2715-629b-803a-bc8b-f7948eaa1d76" class="bulleted-list"><li style="list-style-type:disc"><strong>Standalone exe 파일 생성</strong>: pyinstaller를 사용해 프로그램을 단일 exe 파일로 패키징하여, IDE나 Python 설치 없이 Windows 환경에서 바로 실행 가능하게 합니다. (인증 JSON 파일 내장 지원)</li></ul><h2 id="23ba2715-629b-800e-bde3-e5cbd36aab67" class="">프로젝트를 통해 얻은 점과 보완할 점</h2><h3 id="23ba2715-629b-8063-bfc0-ef6ce81f94b5" class=""><mark class="highlight-teal"><strong>구글 시트 API 활용 및 자동화 경험</strong></mark> → <mark class="highlight-brown">에러/예외 대응 강화</mark></h3><ul id="23ba2715-629b-807c-851d-ea9c3264b7dd" class="bulleted-list"><li style="list-style-type:disc"><strong>구글시트 API를 활용하여 인증, 데이터 동기화, 스타일링 및 수식 자동 적용 등 업무자동화</strong> 경험을 쌓았습니다.</li></ul><ul id="23ba2715-629b-8023-9a1a-d77910204ca6" class="bulleted-list"><li style="list-style-type:disc">다양한 데이터 형식을 가공할 때 기본적인 예외처리에서 나아가 네트워크 및 API 오류 대응력을 높일 필요가 있습니다.</li></ul><h3 id="23ba2715-629b-8058-9e93-f38a11c8866e" class=""><mark class="highlight-teal">실용적인 GUI 설계</mark> → <mark class="highlight-brown">웹 버전</mark></h3><ul id="23ba2715-629b-8048-bd40-c3bbe6fd69ab" class="bulleted-list"><li style="list-style-type:disc"><strong>사용자 친화적이고 직관적인 GUI 설계</strong>로 업무자동화 편의성을 높이는 방향으로 설계하였습니다.</li></ul><ul id="23ba2715-629b-80d7-9c19-fbed332d5f05" class="bulleted-list"><li style="list-style-type:disc">웹 버전으로 확장하여, 다양한 사용자 환경과 플랫폼에서 접근성과 사용성을 높이는 개선할 예정입니다.</li></ul><hr style="page-break-after: always; visibility: hidden !important;" id="23ba2715-629b-8072-a128-f415c410ccd4"/><h1 id="23ba2715-629b-8024-8043-dd23b35ee689" class="">웹 크롤링 &amp; <strong>실시간 상품 가격 및 재고 업데이터</strong></h1><div id="23ca2715-629b-8011-9cad-c29fedb41c72" class="column-list"><div id="23ca2715-629b-800c-b5e0-e93ac8901827" style="width:68.75%" class="column"><blockquote id="23ba2715-629b-80a8-80a3-d66b3f250912" class=""><strong>Python</strong>을 기반으로 Excel 파일에서 상품 데이터를 읽어들이고, <strong>웹 크롤링을 통해 실시간 가격과 재고 정보를 수집</strong>한 후, 이를 가공하여 다양한 <strong>e-commerce 플랫폼(쿠팡, 스마트스토어 등)의 API</strong>를 통해 업데이트<strong><br/><br/></strong>기간 : 2024.02 ~ 2024.08 <br/>개인프로젝트<br/>GitHub : <br/><a href="https://github.com/goottjason/python-product-uploader">https://github.com/goottjason/python-product-uploader</a></blockquote><h2 id="23ba2715-629b-8050-a64e-f7545f65d923" class="">사용스택</h2><p id="23ba2715-629b-80a0-921a-efd325acbbcc" class=""><code><strong>Python</strong></code><strong> </strong><code><strong>BeautifulSoup</strong></code><strong> </strong><code><strong>Selenium</strong></code><strong> </strong><code><strong>Openpyxl</strong></code><strong> </strong><code><strong>Pandas</strong></code></p><p id="23ba2715-629b-80ff-8762-e0734afe165f" class=""><code><strong>Coupang API</strong></code><strong> </strong><code><strong>Naver API</strong></code><strong> </strong><code><strong>ESM API</strong></code><strong> </strong><code><strong>11st API</strong></code></p></div><div id="23ca2715-629b-8020-980a-db24ee2fb365" style="width:31.25%" class="column"><figure id="23ca2715-629b-807a-930f-e96512ef6e7a" class="image"><a href="image%204.png"><img style="width:1333.987548828125px" src="image%204.png"/></a></figure></div></div><h2 id="23ba2715-629b-80e9-8ccf-c75f59410d42" class=""><strong>주요 기능</strong></h2><ul id="23ba2715-629b-8031-96a7-d9d7bb930459" class="bulleted-list"><li style="list-style-type:disc"><strong>Excel 데이터 읽기</strong>: openpyxl과 pandas를 활용하여 입력 Excel 파일에서 상품 링크와 기본 정보를 로드합니다.</li></ul><ul id="23ba2715-629b-8022-8b04-ccee80589330" class="bulleted-list"><li style="list-style-type:disc"><strong>웹 크롤링</strong>: selenium과 beautifulSoup으로 각 상품 링크를 방문하여 실시간 가격과 재고 데이터를 추출합니다. 동적 콘텐츠 처리를 위해 브라우저 자동화가 적용되었습니다.</li></ul><ul id="23ba2715-629b-8050-b979-eba0e9447215" class="bulleted-list"><li style="list-style-type:disc"><strong>데이터 가공</strong>: 수집된 데이터를 정리, 필터링, 계산(예: 마진율 계산)합니다.</li></ul><ul id="23ba2715-629b-80c7-a92e-e971c51cfe5d" class="bulleted-list"><li style="list-style-type:disc"><strong>API 업데이트</strong>: 가공된 데이터를 쿠팡, 스마트스토어 등의 플랫폼 API로 전송하여 가격과 재고를 실시간으로 업데이트합니다. 오류 처리와 재시도 로직을 포함합니다.</li></ul><h2 id="23ba2715-629b-80b5-ba5b-c7708d4c5652" class=""><strong>프로젝트를 통해 얻은 점과 보완할 점</strong></h2><ul id="23ba2715-629b-809a-8bd9-e91ee3e459a3" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal"><strong>기술 스킬 향상</strong></mark>: <strong>웹 크롤링(selenium, beautifulSoup)과 데이터 처리(pandas)</strong>의 실전 적용을 통해 Python의 다재다능함을 체득했습니다. 특히, <strong>동적 웹 페이지 처리와 API 연동에서 문제 해결 능력</strong>이 강화되었습니다.</li></ul><ul id="23ba2715-629b-8010-b45e-de1bca41f95a" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal"><strong>자동화의 효율성</strong></mark>: <strong>수동 작업을 자동화</strong>함으로써 시간 절감의 가치를 깨달았으며, e-commerce 분야에서 변화에 빠른 대응의 중요성을 체험했습니다.</li></ul><ul id="23ba2715-629b-8020-8f4f-f7d3b5784ac6" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal"><strong>프로젝트 관리 경험</strong></mark>: 주기적으로 변동하는 웹페이지에 대응하기 위해 <strong>코드 모듈화와 에러 핸들링을 통해 유지보수성 높은 프로그램</strong>을 만드는 데 초점을 맞췄습니다.</li></ul><ul id="23ca2715-629b-80d9-85b2-d8a042dda9fc" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-brown"><strong>사용자 편의성 강화</strong></mark>: 현재는 코드 내부를 직접 수정하고 IDE에서 실행하는 방식이므로, 입력과 실행을 더 편리하게 하기 위해 GUI를 도입하여 프로그램을 사용자 친화적으로 개선할 계획입니다.</li></ul><hr style="page-break-after: always; visibility: hidden !important;" id="23ba2715-629b-8096-9c54-c974520c38c8"/><p id="23ca2715-629b-801d-a3c5-fc1f7e405e79" class="">
 </p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
