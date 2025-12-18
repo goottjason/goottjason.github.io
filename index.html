@@ -2,526 +2,688 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>ESG 컨설팅 리포트</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>ESG 자가진단 - 환경(E)</title>
   <style>
-    * { box-sizing:border-box; }
-    body {
-      margin:0;
-      padding:24px;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;
-      background:#f5f7fa;
-      color:#1f2933;
+    :root {
+      --e-main: #005b96;        /* E 영역 메인 블루 */
+      --e-main-dark: #003d73;   /* 헤더용 */
+      --accent: #f39c12;        /* 진행도/버튼 포인트 */
+      --bg: #f5f7fb;
+      --border: #d0d4e0;
+      --muted: #666;
+      --danger: #c0392b;
     }
-    h1,h2,h3 { margin:0 0 12px; }
-    h1 { font-size:28px; }
-    h2 { font-size:20px; margin-top:32px; }
-    h3 { font-size:16px; margin-top:24px; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+      background-color: var(--bg);
+      color: #222;
+    }
 
     .page {
-      max-width:1200px;
-      margin:0 auto;
-      background:#fff;
-      padding:24px 32px 40px;
-      border-radius:12px;
-      box-shadow:0 8px 24px rgba(15,23,42,0.12);
-    }
-    .subtitle {
-      color:#6b7280;
-      font-size:14px;
-      margin-bottom:24px;
-    }
-    .grid-2 {
-      display:grid;
-      grid-template-columns:1.2fr 1fr;
-      gap:24px;
-      align-items:stretch;
-    }
-    .card {
-      background:#fafbff;
-      border-radius:12px;
-      padding:16px 20px 20px;
-      border:1px solid #e5e7eb;
-    }
-    .card-header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:8px;
-    }
-    .pill {
-      display:inline-flex;
-      align-items:center;
-      padding:2px 10px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:600;
-      background:#eff6ff;
-      color:#1d4ed8;
-    }
-    .pill.red { background:#fef2f2; color:#b91c1c; }
-    .pill.green { background:#ecfdf3; color:#15803d; }
-
-    .kpi-row {
-      display:flex;
-      gap:16px;
-      flex-wrap:wrap;
-      margin-top:8px;
-    }
-    .kpi {
-      flex:1 1 120px;
-      background:#fff;
-      border-radius:10px;
-      padding:10px 12px;
-      border:1px solid #e5e7eb;
-    }
-    .kpi-label {
-      font-size:11px;
-      color:#6b7280;
-      margin-bottom:4px;
-    }
-    .kpi-value {
-      font-size:18px;
-      font-weight:700;
-    }
-    .kpi-sub {
-      font-size:11px;
-      color:#9ca3af;
+      max-width: 1180px;
+      margin: 24px auto 48px;
+      padding: 0 16px 32px;
     }
 
-    table {
-      width:100%;
-      border-collapse:collapse;
-      font-size:12px;
-      margin-top:8px;
-    }
-    th, td {
-      padding:6px 8px;
-      border-bottom:1px solid #e5e7eb;
-      vertical-align:top;
-    }
-    th {
-      background:#f3f4f6;
-      font-weight:600;
-      text-align:left;
-      white-space:nowrap;
-    }
-    tr:nth-child(even) td { background:#fafafa; }
-
-    .tag {
-      display:inline-flex;
-      padding:1px 6px;
-      border-radius:4px;
-      font-size:10px;
-      margin-right:4px;
-      margin-bottom:2px;
-      background:#e5e7eb;
-      color:#374151;
-    }
-    .tag.missing { background:#fee2e2; color:#b91c1c; }
-    .tag.optional { background:#dbeafe; color:#1d4ed8; }
-
-    .timeline {
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      margin-top:8px;
-    }
-    .timeline-item {
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-    }
-    .timeline-dot {
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      margin-top:4px;
-    }
-    .dot-now { background:#f97316; }
-    .dot-short { background:#3b82f6; }
-    .dot-mid { background:#10b981; }
-
-    .timeline-content {
-      flex:1;
-      background:#fff;
-      border-radius:8px;
-      padding:6px 8px;
-      border:1px dashed #e5e7eb;
-    }
-    .timeline-label {
-      font-size:11px;
-      font-weight:700;
-      margin-bottom:2px;
-    }
-    .timeline-text {
-      font-size:11px;
-      color:#4b5563;
+    /* 상단 헤더 */
+    .header {
+      background: linear-gradient(90deg, var(--e-main-dark), var(--e-main));
+      color: #fff;
+      border-radius: 16px;
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
+    .header-title-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .header-badge-esg {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background-color: #f1c40f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #2c3e50;
+      font-size: 14px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .header-sub {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    /* 진행도 영역 */
+    .progress-container {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) auto;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+    }
+
+    .progress-bar-wrap {
+      background-color: rgba(255,255,255,0.18);
+      border-radius: 999px;
+      overflow: hidden;
+      height: 9px;
+    }
+
+    .progress-bar-inner {
+      height: 100%;
+      width: 20%; /* 예: 5페이지 중 1페이지면 20% */
+      background: linear-gradient(90deg, #f1c40f, #f39c12);
+      transition: width 0.25s;
+    }
+
+    .progress-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .progress-text strong {
+      font-weight: 600;
+    }
+
+    /* 범례 */
     .legend {
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:8px;
-      font-size:11px;
-      color:#6b7280;
-    }
-    .legend span {
-      display:inline-flex;
-      align-items:center;
-      gap:4px;
-    }
-    .legend-color {
-      width:10px;
-      height:10px;
-      border-radius:2px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      padding: 10px 14px;
+      margin-bottom: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
     }
 
-    .footer {
-      margin-top:24px;
-      font-size:11px;
-      color:#9ca3af;
-      border-top:1px solid #e5e7eb;
-      padding-top:12px;
+    .legend span strong {
+      color: #333;
+      font-weight: 600;
     }
 
-    @media (max-width:900px) {
-      .grid-2 { grid-template-columns:1fr; }
+    /* 문항 카드 */
+    .question-card {
+      background-color: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 14px 18px 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .question-header {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      column-gap: 12px;
+      row-gap: 6px;
+      font-size: 11px;
+      margin-bottom: 8px;
+      align-items: center;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .badge-esg {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #27ae60;
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .badge-topic {
+      background-color: #e8f2ff;
+      color: #1d4f91;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    .code-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 60px;
+      padding: 0 8px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid #c5d3ec;
+      background-color: #f5f8ff;
+      color: #1d4f91;
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    .header-middle {
+      justify-self: center;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .header-right {
+      justify-self: end;
+      font-size: 11px;
+      color: #34495e;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background-color: #fdf2d6;
+      border: 1px solid #f5c16f;
+    }
+
+    .question-text-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .question-text {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .question-note {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .body-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+      gap: 16px;
+    }
+
+    .options-block, .meta-block {
+      border-radius: 8px;
+      border: 1px solid #e3e6f0;
+      padding: 10px 12px;
+      background-color: #fafbff;
+    }
+
+    .block-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    .option-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .option-item input[type="radio"],
+    .option-item input[type="checkbox"] {
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .option-label {
+      flex: 1;
+    }
+
+    .etc-input {
+      margin-top: 4px;
+      margin-left: 20px;
+      width: 100%;
+      max-width: 360px;
+      padding: 4px 6px;
+      font-size: 12px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .meta-section {
+      border-top: 1px dashed #dde0eb;
+      padding-top: 6px;
+      margin-top: 6px;
+    }
+
+    .meta-section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .meta-title {
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #444;
+    }
+
+    .meta-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+      font-size: 11px;
+    }
+
+    .meta-options label {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    /* 하단 네비게이션 */
+    .nav-bar {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-size: 12px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-prev {
+      border-color: var(--border);
+      color: #555;
+    }
+
+    .btn-next {
+      background: linear-gradient(90deg, #f39c12, #f1c40f);
+      color: #2c3e50;
+      border: none;
+      font-weight: 600;
+    }
+
+    .btn-save {
+      border-color: #3498db;
+      color: #1d4f91;
+      background-color: #eaf4ff;
+      font-weight: 500;
+    }
+
+    .nav-info {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .body-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .question-header {
+        grid-template-columns: 1fr;
+        row-gap: 4px;
+      }
+
+      .header-right {
+        justify-self: flex-start;
+      }
     }
   </style>
 </head>
 <body>
 <div class="page">
-  <h1>ESG 진단 컨설팅 리포트</h1>
-  <div class="subtitle">
-    설문 응답과 증빙문서 업로드 결과를 기반으로 현재 수준을 진단하고, 영역별 우선 조치(Action Plan)를 제안합니다.
+
+  <!-- 상단 헤더 + 진행도 -->
+  <header class="header">
+    <div class="header-title-line">
+      <span class="header-badge-esg">E</span>
+      <h1>환경(E) 자가진단</h1>
+    </div>
+    <div class="header-sub">
+      회사의 환경·기후 관련 경영 수준을 자가진단합니다. 각 문항에 대해 현재 운영 수준과 운영 주기, 증빙 유형을 선택해 주세요.
+    </div>
+    <div class="progress-container">
+      <div class="progress-bar-wrap">
+        <!-- 실제 사용 시 JS로 width 조정 (예: 현재페이지/총페이지) -->
+        <div class="progress-bar-inner" id="progressBar" style="width: 20%;"></div>
+      </div>
+      <div class="progress-text">
+        <strong id="progressPageText">1 / 5 페이지</strong>
+        <span id="progressRangeText">문항 E01E001 ~ E01E004</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 범례 -->
+  <div class="legend">
+    <span><strong>● 코드</strong>: 세부 문항 코드 (E01E001 등)</span>
+    <span><strong>단일 선택</strong>: 운영 수준 1개만 선택</span>
+    <span><strong>복수 선택</strong>: 해당되는 항목 모두 선택</span>
+    <span><strong>운영 주기</strong>: 실제 운영 빈도 (1개 선택)</span>
+    <span><strong>증빙 유형</strong>: 보유·관리 중인 자료 유형 (복수 선택)</span>
   </div>
 
-  <!-- 1. 영역별 점수 + 증빙 현황 -->
-  <h2>1. 영역별 점수와 증빙 현황</h2>
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-header">
-        <h3>영역별 점수 레이더차트</h3>
-        <span class="pill">요약 지표</span>
+  <!-- Q1: E01E001 -->
+  <section class="question-card" data-page="1">
+    <div class="question-header">
+      <div class="header-left">
+        <span class="badge-esg">E</span>
+        <span class="badge-topic">환경경영 전략·거버넌스</span>
+        <span class="code-pill">E01E001</span>
       </div>
-      <canvas id="radarChart" height="260"></canvas>
-      <div class="legend">
-        <span><span class="legend-color" style="background:#38bdf8;"></span>현재 점수</span>
-        <span><span class="legend-color" style="border:2px dashed #0f766e;background:transparent;"></span>목표 수준</span>
+      <div class="header-middle">
+        영역(E/S/G): 환경(E)
+      </div>
+      <div class="header-right">
+        단일 선택
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-header">
-        <h3>증빙문서 현황 (전체)</h3>
-        <span class="pill green">예시 데이터</span>
+    <div class="question-text-line">
+      <div class="question-text">
+        환경 또는 기후변화 대응과 관련하여, 회사의 방침이나 기준은 어느 수준으로 운영되고 있습니까?
       </div>
-      <div class="kpi-row">
-        <div class="kpi">
-          <div class="kpi-label">권장 증빙 수</div>
-          <div class="kpi-value" id="kpiTotalRecommended">48</div>
-          <div class="kpi-sub">E·S·G·지배구조 전체 기준</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">업로드된 증빙</div>
-          <div class="kpi-value" id="kpiPrepared">31</div>
-          <div class="kpi-sub">준비율 <span id="kpiPreparedRate">64%</span></div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">부족한 증빙</div>
-          <div class="kpi-value" id="kpiMissing">17</div>
-          <div class="kpi-sub">우선 보완 필요</div>
-        </div>
-      </div>
-      <canvas id="barEvidence" height="120" style="margin-top:12px;"></canvas>
     </div>
-  </div>
 
-  <!-- 2. 문항별 필수 증빙 요약 -->
-  <h2>2. 문항별 필수/누락 증빙 요약</h2>
-  <div class="card">
-    <div class="card-header">
-      <h3>주요 설문 문항별 체크리스트 (1줄 요약)</h3>
-      <span class="pill">필수 증빙 한눈에 보기</span>
-    </div>
-    <table>
-      <thead>
-      <tr>
-        <th style="width:22%;">문항</th>
-        <th style="width:30%;">필수 증빙</th>
-        <th style="width:26%;">현재 보유 문서</th>
-        <th style="width:22%;">누락/권장 문서</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>환경 방침 및 목표(E1)</td>
-        <td>
-          <span class="tag">환경경영방침서</span>
-          <span class="tag">연간 환경목표 및 KPI</span>
-        </td>
-        <td>
-          <span class="tag">환경경영방침서</span>
-        </td>
-        <td>
-          <span class="tag missing">연간 환경목표/KPI</span>
-        </td>
-      </tr>
-      <tr>
-        <td>온실가스/에너지 관리(E2)</td>
-        <td>
-          <span class="tag">에너지 사용량 집계표</span>
-          <span class="tag">온실가스 인벤토리</span>
-        </td>
-        <td>
-          <span class="tag">에너지 사용량 집계표</span>
-        </td>
-        <td>
-          <span class="tag missing">온실가스 인벤토리</span>
-          <span class="tag optional">감축 목표 선언문(선택)</span>
-        </td>
-      </tr>
-      <tr>
-        <td>인권·노동 정책(S1)</td>
-        <td>
-          <span class="tag">인권경영 선언문</span>
-          <span class="tag">취업규칙/근로계약서 템플릿</span>
-        </td>
-        <td>
-          <span class="tag">취업규칙</span>
-        </td>
-        <td>
-          <span class="tag missing">인권경영 선언문</span>
-        </td>
-      </tr>
-      <tr>
-        <td>산업안전보건(S2)</td>
-        <td>
-          <span class="tag">안전보건관리 체계도</span>
-          <span class="tag">연간 안전 교육계획</span>
-        </td>
-        <td>
-          <span class="tag">안전보건관리 체계도</span>
-        </td>
-        <td>
-          <span class="tag missing">교육계획/실시 기록</span>
-        </td>
-      </tr>
-      <tr>
-        <td>윤리·부패방지(G1)</td>
-        <td>
-          <span class="tag">임직원 행동강령</span>
-          <span class="tag">부패방지 서약서 양식</span>
-        </td>
-        <td>
-          <span class="tag">행동강령</span>
-        </td>
-        <td>
-          <span class="tag missing">부패방지 서약서 양식</span>
-        </td>
-      </tr>
-      <tr>
-        <td>이사회/의사결정 구조(G2)</td>
-        <td>
-          <span class="tag">이사회/경영회의 규정</span>
-          <span class="tag">회의록 샘플</span>
-        </td>
-        <td>
-          <span class="tag">회의록 샘플</span>
-        </td>
-        <td>
-          <span class="tag missing">회의 규정</span>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    <div style="font-size:11px;color:#6b7280;margin-top:6px;">
-      ※ 실제 서비스에서는 설문 항목 메타데이터와 업로드 상태를 기반으로 자동 생성되며, 필수/선택 여부 태그도 함께 표시됩니다.[web:11]
-    </div>
-  </div>
-
-  <!-- 3. AI 추천 액션 플랜 -->
-  <h2>3. AI 추천 액션 플랜 (즉시 · 단기 · 중장기)</h2>
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-header">
-        <h3>조치 우선순위 타임라인</h3>
-        <span class="pill red">누락 증빙 기준</span>
+    <div class="body-layout">
+      <!-- 운영수준 선택 -->
+      <div class="options-block">
+        <div class="block-title">운영 수준 (택 1)</div>
+        <div class="option-group">
+          <label class="option-item">
+            <input type="radio" name="E01E001_level" value="4">
+            <span class="option-label">방침을 수립하고 실행 과제와 담당을 정해 운영하고 있습니다. (4점)</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="E01E001_level" value="3">
+            <span class="option-label">방침을 수립해 전사에 공유해 운영하고 있습니다. (3점)</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="E01E001_level" value="2">
+            <span class="option-label">방침을 수립해 일부 조직에서 운영하고 있습니다. (2점)</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="E01E001_level" value="1">
+            <span class="option-label">방침 문서를 보유하고 있습니다. (1점)</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="E01E001_level" value="0">
+            <span class="option-label">방침이나 기준을 운영하지 않습니다. (0점)</span>
+          </label>
+        </div>
       </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot dot-now"></div>
-          <div class="timeline-content">
-            <div class="timeline-label">즉시(0~1개월)</div>
-            <div class="timeline-text">
-              • 인권경영 선언문, 부패방지 서약서 양식, 환경·안전 기본 방침서 초안 작성 및 대표이사 승인 프로세스 구축.<br/>
-              • 현재 존재하지만 갱신이 필요한 규정류의 최신본 정리 및 파일명/버전 관리 체계 도입.
-            </div>
+
+      <!-- 운영주기 & 증빙유형 -->
+      <div class="meta-block">
+        <div class="meta-section">
+          <div class="meta-title">운영 주기 (1개 선택)</div>
+          <div class="meta-options">
+            <label><input type="radio" name="E01E001_cycle" value="비정기"> 비정기(필요시에만)</label>
+            <label><input type="radio" name="E01E001_cycle" value="연 1회"> 연 1회</label>
+            <label><input type="radio" name="E01E001_cycle" value="반기 1회"> 반기 1회</label>
+            <label><input type="radio" name="E01E001_cycle" value="분기 1회"> 분기 1회</label>
+            <label><input type="radio" name="E01E001_cycle" value="상시 지속 운영"> 상시 지속 운영</label>
           </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot dot-short"></div>
-          <div class="timeline-content">
-            <div class="timeline-label">단기(1~6개월)</div>
-            <div class="timeline-text">
-              • 에너지 사용량·온실가스 인벤토리, 안전 교육 이수 현황 등 정량 데이터 수집 템플릿 표준화 및 정기 집계 프로세스 구축.<br/>
-              • 정기적인 윤리·인권·안전 교육 계획 수립 및 교육자료/참석대장 양식 정의.
-            </div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot dot-mid"></div>
-          <div class="timeline-content">
-            <div class="timeline-label">중장기(6~24개월)</div>
-            <div class="timeline-text">
-              • 환경/사회 KPI에 대한 연간 목표 설정(예: 에너지 사용량·사고율 감소 목표) 및 모니터링 대시보드 구축.[page:1][web:17]<br/>
-              • 이사회·경영회의 수준에서 ESG 현황을 정기 보고하고, CSRD/GRI 등 외부 공시 체계와 연계한 통합 ESG 보고 프로세스 설계.[page:1][web:11]
-            </div>
+
+        <div class="meta-section">
+          <div class="meta-title">증빙 유형 (복수 선택)</div>
+          <div class="meta-options">
+            <label><input type="checkbox" name="E01E001_evidence" value="정책·규정 문서"> 정책·규정 문서</label>
+            <label><input type="checkbox" name="E01E001_evidence" value="사내 규정/제도"> 사내 규정/제도</label>
+            <label><input type="checkbox" name="E01E001_evidence" value="교육 자료 및 이수 기록"> 교육 자료 및 이수 기록</label>
+            <label><input type="checkbox" name="E01E001_evidence" value="운영 활동 증빙"> 운영 활동 증빙</label>
+            <label><input type="checkbox" name="E01E001_evidence" value="시스템 기반 데이터"> 시스템 기반 데이터</label>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- 4. 추가 아이디어: 성숙도 게이지 + 리스크 매트릭스 -->
-    <div class="card">
-      <div class="card-header">
-        <h3>추가 인사이트 차트</h3>
-        <span class="pill">성숙도 & 리스크</span>
+  <!-- Q2: E01E002 (복수응답 + 기타) -->
+  <section class="question-card" data-page="1">
+    <div class="question-header">
+      <div class="header-left">
+        <span class="badge-esg">E</span>
+        <span class="badge-topic">환경경영 전략·거버넌스</span>
+        <span class="code-pill">E01E002</span>
       </div>
-      <canvas id="gaugeMaturity" height="160"></canvas>
-      <div style="font-size:11px;color:#6b7280;margin-top:4px;">
-        • 전사 ESG 성숙도 게이지(1~5단계).<br/>
-        • 설문 응답과 증빙 미비율을 조합해 “리스크 매트릭스(발생 가능성 × 영향도)” 히트맵도 함께 제공 가능.[web:11][web:20]
+      <div class="header-middle">
+        영역(E/S/G): 환경(E)
+      </div>
+      <div class="header-right">
+        복수 선택
       </div>
     </div>
-  </div>
 
-  <!-- 4. 추가 아이디어: 여러 차트 제안 -->
-  <h2>4. 리포트 확장을 위한 시각화 아이디어</h2>
-  <div class="card">
-    <ul style="margin:0 0 4px 18px;font-size:13px;color:#374151;">
-      <li>연도별 ESG 점수 추세 라인차트: 베이스라인 대비 개선 정도와 목표치 라인(타깃 라인)을 함께 표시.[web:11]</li>
-      <li>주제별(예: 에너지·안전·인권·윤리) 리스크/기회 매트릭스 히트맵: 중대성(materiality)과 영향도를 2축으로 시각화.[page:1]</li>
-      <li>업종 평균·동종업체 벤치마크 막대차트: 자사 점수와 업계 평균, 상위 25% 수준을 나란히 비교.[web:11]</li>
-      <li>조직 내 부서별 증빙 준비율 파레토 차트: 준비율이 낮은 부서를 한눈에 보여 우선 지원 대상을 선정.[web:17]</li>
-      <li>웹 리포트 버전에서는 각 문항 행을 클릭하면 팝업/슬라이드 패널로 “샘플 양식, 참고 가이드, 책임 부서, 예상 리드타임” 등을 제공.</li>
-    </ul>
-    <div class="footer">
-      ESG 리포트는 정량 데이터와 시각화를 결합할수록 이해도와 신뢰도가 높아지므로, 바 차트·라인 차트·레이더 차트·히트맵·게이지 등을 조합해 대시보드형 리포트로 구성하는 것이 권장됩니다.[web:11][web:8]
+    <div class="question-text-line">
+      <div class="question-text">
+        에너지·탄소·자원 관련 중기(2~5년) 목표는 어느 수준으로 운영되고 있습니까?
+      </div>
+      <div class="question-note">
+        (해당되는 항목을 모두 선택해 주세요)
+      </div>
+    </div>
+
+    <div class="body-layout">
+      <div class="options-block">
+        <div class="block-title">운영 수준 (복수 선택)</div>
+        <div class="option-group">
+          <label class="option-item">
+            <input type="checkbox" name="E01E002_level" value="정량 목표">
+            <span class="option-label">정량 목표를 설정해 운영하고 있습니다.</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="E01E002_level" value="실행 계획">
+            <span class="option-label">실행 계획을 수립해 운영하고 있습니다.</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="E01E002_level" value="이행 현황 점검">
+            <span class="option-label">목표 이행 현황을 점검하고 있습니다.</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="E01E002_level" value="문서 관리">
+            <span class="option-label">목표와 성과를 문서로 관리하고 있습니다.</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="E01E002_level" value="운영하지 않음">
+            <span class="option-label">중기 목표를 운영하지 않습니다.</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="E01E002_level" value="기타" id="E01E002_etc_check">
+            <span class="option-label">기타: (직접입력)</span>
+          </label>
+          <input type="text" id="E01E002_etc_text" class="etc-input" placeholder="기타 내용을 입력해 주세요." />
+        </div>
+      </div>
+
+      <div class="meta-block">
+        <div class="meta-section">
+          <div class="meta-title">운영 주기 (1개 선택)</div>
+          <div class="meta-options">
+            <label><input type="radio" name="E01E002_cycle" value="비정기"> 비정기(필요시에만)</label>
+            <label><input type="radio" name="E01E002_cycle" value="연 1회"> 연 1회</label>
+            <label><input type="radio" name="E01E002_cycle" value="반기 1회"> 반기 1회</label>
+            <label><input type="radio" name="E01E002_cycle" value="분기 1회"> 분기 1회</label>
+            <label><input type="radio" name="E01E002_cycle" value="상시 지속 운영"> 상시 지속 운영</label>
+          </div>
+        </div>
+
+        <div class="meta-section">
+          <div class="meta-title">증빙 유형 (복수 선택)</div>
+          <div class="meta-options">
+            <label><input type="checkbox" name="E01E002_evidence" value="정책·규정 문서"> 정책·규정 문서</label>
+            <label><input type="checkbox" name="E01E002_evidence" value="사내 규정/제도"> 사내 규정/제도</label>
+            <label><input type="checkbox" name="E01E002_evidence" value="교육 자료 및 이수 기록"> 교육 자료 및 이수 기록</label>
+            <label><input type="checkbox" name="E01E002_evidence" value="운영 활동 증빙"> 운영 활동 증빙</label>
+            <label><input type="checkbox" name="E01E002_evidence" value="시스템 기반 데이터"> 시스템 기반 데이터</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 이후 E01E003 ~ E04E010까지 동일 패턴으로 section 추가, data-page 값만 조정 -->
+
+  <!-- 하단 네비게이션 -->
+  <div class="nav-bar">
+    <div class="nav-left">
+      <button class="btn btn-prev" id="btnPrev" disabled>&larr; 이전</button>
+      <button class="btn btn-next" id="btnNext">다음 &rarr;</button>
+    </div>
+    <div class="nav-right">
+      <button class="btn btn-save" id="btnSave">임시 저장</button>
+      <div class="nav-info" id="navInfo">현재 페이지: 1 / 5</div>
     </div>
   </div>
 </div>
 
 <script>
-  // === 예시 데이터 (백엔드에서 JSON으로 바인딩) ===
-  const areaLabels = ["환경", "사회", "지배구조", "정보공시"];
-  const areaScores = [62, 55, 48, 40];          // 현재 점수
-  const areaTargets = [80, 80, 75, 70];         // 목표 점수
-  const evidenceRecommended = [14, 12, 10, 12]; // 권장 문서 수
-  const evidencePrepared =    [9,  7,  6,  9];  // 보유 문서 수
-
-  // KPI 계산
-  const totalRecommended = evidenceRecommended.reduce((a,b)=>a+b,0);
-  const totalPrepared = evidencePrepared.reduce((a,b)=>a+b,0);
-  const totalMissing = totalRecommended - totalPrepared;
-  document.getElementById("kpiTotalRecommended").textContent = totalRecommended;
-  document.getElementById("kpiPrepared").textContent = totalPrepared;
-  document.getElementById("kpiMissing").textContent = totalMissing;
-  document.getElementById("kpiPreparedRate").textContent =
-    Math.round((totalPrepared/totalRecommended)*100) + "%";
-
-  // 1) 레이더 차트 (영역별 점수)
-  const radarCtx = document.getElementById("radarChart").getContext("2d");
-  new Chart(radarCtx, {
-    type: "radar",
-    data: {
-      labels: areaLabels,
-      datasets: [
-        {
-          label: "현재 점수",
-          data: areaScores,
-          backgroundColor: "rgba(56,189,248,0.35)",
-          borderColor: "rgba(56,189,248,1)",
-          borderWidth: 1.5,
-          pointBackgroundColor: "rgba(56,189,248,1)"
-        },
-        {
-          label: "목표 점수",
-          data: areaTargets,
-          backgroundColor: "rgba(15,118,110,0.08)",
-          borderColor: "rgba(15,118,110,0.9)",
-          borderWidth: 1,
-          borderDash: [4,3],
-          pointBackgroundColor: "rgba(15,118,110,1)"
+  // 기타 입력칸 enable/disable
+  (function () {
+    const etcCheck = document.getElementById('E01E002_etc_check');
+    const etcInput = document.getElementById('E01E002_etc_text');
+    if (etcCheck && etcInput) {
+      etcInput.disabled = true;
+      etcCheck.addEventListener('change', function () {
+        etcInput.disabled = !this.checked;
+        if (!this.checked) {
+          etcInput.value = '';
         }
-      ]
-    },
-    options: {
-      responsive:true,
-      plugins:{legend:{display:false}},
-      scales:{
-        r:{
-          suggestedMin:0,
-          suggestedMax:100,
-          ticks:{stepSize:20},
-          grid:{color:"rgba(148,163,184,0.4)"},
-          angleLines:{color:"rgba(148,163,184,0.4)"}
-        }
+      });
+    }
+  })();
+
+  // 페이지 단위 네비게이션 (data-page 기준)
+  (function () {
+    const sections = Array.from(document.querySelectorAll('.question-card'));
+    if (sections.length === 0) return;
+
+    // 예: 1페이지에 2~3문항씩 배치한 구조를 가정
+    const pages = [...new Set(sections.map(s => s.dataset.page))].sort();
+    let currentPageIndex = 0;
+
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const btnSave = document.getElementById('btnSave');
+    const progressBar = document.getElementById('progressBar');
+    const progressPageText = document.getElementById('progressPageText');
+    const progressRangeText = document.getElementById('progressRangeText');
+    const navInfo = document.getElementById('navInfo');
+
+    function updateView() {
+      const currentPage = pages[currentPageIndex];
+
+      sections.forEach(sec => {
+        sec.style.display = (sec.dataset.page === currentPage) ? 'block' : 'none';
+      });
+
+      btnPrev.disabled = currentPageIndex === 0;
+      btnNext.disabled = currentPageIndex === pages.length - 1;
+
+      const ratio = ((currentPageIndex + 1) / pages.length) * 100;
+      if (progressBar) {
+        progressBar.style.width = ratio + '%';
+      }
+      if (progressPageText) {
+        progressPageText.textContent = (currentPageIndex + 1) + ' / ' + pages.length + ' 페이지';
+      }
+      if (navInfo) {
+        navInfo.textContent = '현재 페이지: ' + (currentPageIndex + 1) + ' / ' + pages.length;
+      }
+
+      // 예시: 현재 페이지의 코드 범위를 진행도 텍스트로 표시
+      const codes = sections
+        .filter(sec => sec.dataset.page === currentPage)
+        .map(sec => sec.querySelector('.code-pill')?.textContent?.trim())
+        .filter(Boolean);
+      if (progressRangeText && codes.length > 0) {
+        progressRangeText.textContent = '문항 ' + codes[0] + ' ~ ' + codes[codes.length - 1];
       }
     }
-  });
 
-  // 2) 영역별 증빙 준비율 막대차트
-  const barCtx = document.getElementById("barEvidence").getContext("2d");
-  new Chart(barCtx, {
-    type: "bar",
-    data: {
-      labels: areaLabels,
-      datasets: [
-        {
-          label: "권장 증빙 수",
-          data: evidenceRecommended,
-          backgroundColor: "rgba(209,213,219,0.9)"
-        },
-        {
-          label: "업로드된 증빙",
-          data: evidencePrepared,
-          backgroundColor: "rgba(59,130,246,0.9)"
-        }
-      ]
-    },
-    options: {
-      responsive:true,
-      plugins:{legend:{position:"bottom"}},
-      scales:{
-        y:{beginAtZero:true,ticks:{stepSize:2}}
+    btnPrev.addEventListener('click', function () {
+      if (currentPageIndex > 0) {
+        currentPageIndex--;
+        updateView();
       }
-    }
-  });
+    });
 
-  // 3) ESG 성숙도 게이지 (도넛 변형)
-  const gaugeCtx = document.getElementById("gaugeMaturity").getContext("2d");
-  const maturityLevel = 2.8; // 1~5 단계
-  new Chart(gaugeCtx, {
-    type: "doughnut",
-    data: {
-      labels:["현재 수준","남은 수준"],
-      datasets:[{
-        data:[maturityLevel, 5-maturityLevel],
-        backgroundColor:["#22c55e","#e5e7eb"],
-        borderWidth:0
-      }]
-    },
-    options:{
-      rotation:-90 * (Math.PI/180),
-      circumference:180 * (Math.PI/180),
-      cutout:"70%",
-      plugins:{legend:{display:false}},
-    }
-  });
+    btnNext.addEventListener('click', function () {
+      if (currentPageIndex < pages.length - 1) {
+        currentPageIndex++;
+        updateView();
+      }
+    });
 
+    btnSave.addEventListener('click', function () {
+      // 실제 환경에서는 여기서 form 값을 수집해서
+      // localStorage 저장 또는 API 호출로 서버 저장하도록 구현.
+      alert('현재 응답 상태를 임시 저장하는 로직을 여기에 연결하면 됩니다.');
+    });
+
+    // 초기 렌더
+    updateView();
+  })();
 </script>
 </body>
 </html>
