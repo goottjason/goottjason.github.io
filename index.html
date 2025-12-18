@@ -1,812 +1,527 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Jackson Template</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<meta name="author" content="" />
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>ESG 컨설팅 리포트</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { box-sizing:border-box; }
+    body {
+      margin:0;
+      padding:24px;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+      background:#f5f7fa;
+      color:#1f2933;
+    }
+    h1,h2,h3 { margin:0 0 12px; }
+    h1 { font-size:28px; }
+    h2 { font-size:20px; margin-top:32px; }
+    h3 { font-size:16px; margin-top:24px; }
 
-  <!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
+    .page {
+      max-width:1200px;
+      margin:0 auto;
+      background:#fff;
+      padding:24px 32px 40px;
+      border-radius:12px;
+      box-shadow:0 8px 24px rgba(15,23,42,0.12);
+    }
+    .subtitle {
+      color:#6b7280;
+      font-size:14px;
+      margin-bottom:24px;
+    }
+    .grid-2 {
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:24px;
+      align-items:stretch;
+    }
+    .card {
+      background:#fafbff;
+      border-radius:12px;
+      padding:16px 20px 20px;
+      border:1px solid #e5e7eb;
+    }
+    .card-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:8px;
+    }
+    .pill {
+      display:inline-flex;
+      align-items:center;
+      padding:2px 10px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:600;
+      background:#eff6ff;
+      color:#1d4ed8;
+    }
+    .pill.red { background:#fef2f2; color:#b91c1c; }
+    .pill.green { background:#ecfdf3; color:#15803d; }
 
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
+    .kpi-row {
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .kpi {
+      flex:1 1 120px;
+      background:#fff;
+      border-radius:10px;
+      padding:10px 12px;
+      border:1px solid #e5e7eb;
+    }
+    .kpi-label {
+      font-size:11px;
+      color:#6b7280;
+      margin-bottom:4px;
+    }
+    .kpi-value {
+      font-size:18px;
+      font-weight:700;
+    }
+    .kpi-sub {
+      font-size:11px;
+      color:#9ca3af;
+    }
 
-	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
-	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="css/flexslider.css">
-	<!-- Flaticons  -->
-	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-	<!-- Owl Carousel -->
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
+    table {
+      width:100%;
+      border-collapse:collapse;
+      font-size:12px;
+      margin-top:8px;
+    }
+    th, td {
+      padding:6px 8px;
+      border-bottom:1px solid #e5e7eb;
+      vertical-align:top;
+    }
+    th {
+      background:#f3f4f6;
+      font-weight:600;
+      text-align:left;
+      white-space:nowrap;
+    }
+    tr:nth-child(even) td { background:#fafafa; }
 
-	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+    .tag {
+      display:inline-flex;
+      padding:1px 6px;
+      border-radius:4px;
+      font-size:10px;
+      margin-right:4px;
+      margin-bottom:2px;
+      background:#e5e7eb;
+      color:#374151;
+    }
+    .tag.missing { background:#fee2e2; color:#b91c1c; }
+    .tag.optional { background:#dbeafe; color:#1d4ed8; }
 
-	</head>
-	<body>
-	<div id="colorlib-page">
-		<div class="container-wrap">
-		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-		<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
-			<div class="text-center">
-				<div class="author-img" style="background-image: url(images/about.jpg);"></div>
-				<h1 id="colorlib-logo"><a href="index.html">김종원</a></h1>
-				<span class="position">JAVA 백엔드개발자 IN KOREA</span>
-			</div>
-			<nav id="colorlib-main-menu" role="navigation" class="navbar">
-				<div id="navbar" class="collapse">
-					<ul>
-						<!--<li class="active"><a href="#" data-nav-section="home">Home</a></li>-->
-						<li class="active"><a href="#" data-nav-section="about">About Me</a></li>
-						<li><a href="#" data-nav-section="services">Services</a></li>
-						<li><a href="#" data-nav-section="skills">Skills</a></li>
-						<li><a href="#" data-nav-section="education">Education</a></li>
-						<li><a href="#" data-nav-section="experience">Experience</a></li>
-						<li><a href="#" data-nav-section="work">Work</a></li>
-						<li><a href="#" data-nav-section="blog">Blog</a></li>
-						<li><a href="#" data-nav-section="contact">Contact</a></li>
-					</ul>
-				</div>
-			</nav>
+    .timeline {
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:8px;
+    }
+    .timeline-item {
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .timeline-dot {
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      margin-top:4px;
+    }
+    .dot-now { background:#f97316; }
+    .dot-short { background:#3b82f6; }
+    .dot-mid { background:#10b981; }
 
-			<div class="colorlib-footer">
-				<p><small>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright <script>document.write(new Date().getFullYear());</script> All rights reserved. Made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </span> <span>Distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a></span> <span>Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash.com</a></span></small></p>
-				<ul>
-					<li><a href="#"><i class="icon-facebook2"></i></a></li>
-					<li><a href="#"><i class="icon-twitter2"></i></a></li>
-					<li><a href="#"><i class="icon-instagram"></i></a></li>
-					<li><a href="#"><i class="icon-linkedin2"></i></a></li>
-				</ul>
-			</div>
+    .timeline-content {
+      flex:1;
+      background:#fff;
+      border-radius:8px;
+      padding:6px 8px;
+      border:1px dashed #e5e7eb;
+    }
+    .timeline-label {
+      font-size:11px;
+      font-weight:700;
+      margin-bottom:2px;
+    }
+    .timeline-text {
+      font-size:11px;
+      color:#4b5563;
+    }
 
-		</aside>
+    .legend {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:8px;
+      font-size:11px;
+      color:#6b7280;
+    }
+    .legend span {
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+    }
+    .legend-color {
+      width:10px;
+      height:10px;
+      border-radius:2px;
+    }
 
-		<div id="colorlib-main">
-			<!--<section id="colorlib-hero" class="js-fullheight" data-section="home">
-				<div class="flexslider js-fullheight">
-					<ul class="slides">
-				   	<li style="background-image: url(images/img_bg_1.jpg);">
-				   		<div class="overlay"></div>
-				   		<div class="container-fluid">
-				   			<div class="row">
-					   			<div class="col-md-6 col-md-offset-3 col-md-pull-3 col-sm-12 col-xs-12 js-fullheight slider-text">
-					   				<div class="slider-text-inner js-fullheight">
-					   					<div class="desc">
-						   					<h1>Hi! <br>I'm Jackson</h1>
-						   					<h2>100% html5 bootstrap templates Made by <a href="https://colorlib.com/" target="_blank">colorlib.com</a></h2>
-												<p><a class="btn btn-primary btn-learn">Download CV <i class="icon-download4"></i></a></p>
-											</div>
-					   				</div>
-					   			</div>
-					   		</div>
-				   		</div>
-				   	</li>
-				   	<li style="background-image: url(images/img_bg_2.jpg);">
-				   		<div class="overlay"></div>
-				   		<div class="container-fluid">
-				   			<div class="row">
-					   			<div class="col-md-6 col-md-offset-3 col-md-pull-3 col-sm-12 col-xs-12 js-fullheight slider-text">
-					   				<div class="slider-text-inner">
-					   					<div class="desc">
-						   					<h1>I am <br>a Designer</h1>
-												<h2>100% html5 bootstrap templates Made by <a href="https://colorlib.com/" target="_blank">colorlib.com</a></h2>
-												<p><a class="btn btn-primary btn-learn">View Portfolio <i class="icon-briefcase3"></i></a></p>
-											</div>
-					   				</div>
-					   			</div>
-					   		</div>
-				   		</div>
-				   	</li>
-				  	</ul>
-			  	</div>
-			</section>-->
+    .footer {
+      margin-top:24px;
+      font-size:11px;
+      color:#9ca3af;
+      border-top:1px solid #e5e7eb;
+      padding-top:12px;
+    }
 
-			<section class="colorlib-about" data-section="about">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="col-md-12">
-									<div class="about-desc">
-										<span class="heading-meta">About Me</span>
-										<h2 class="colorlib-heading">
-                      늦은 시작이지만 그만큼 쌓아둔 에너지가 가득하다
-                    </h2>
-										<p><strong>개발에서 성취감을 느끼고 늦은 시작이지만 용기 있게 도전하는 웹개발자 김종원입니다.</strong></p>
-                    <p>몰입하면 시간 가는 줄 모르고 일에 집중하며, 신뢰와 책임감을 가장 중요한 가치로 삼고 있습니다. 주변에서는 맡은 일을 꼼꼼하게 해내는, 믿을 수 있는 사람으로 평가합니다.</p>
-										<p>저는 직접 무언가를 만들어내는 과정에서 큰 성취감과 즐거움을 느낍니다. 꾸준한 학습과 실전 경험을 통해, 창의적인 아이디어를 실용적인 결과물로 구현하는 개발자로 성장해 나가겠습니다.</p>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInLeft">
-									<div class="services color-1">
-										<span class="icon2"><i class="icon-bulb"></i></span>
-										<h3>IT특성화기숙학교</h3><p>한국디지털미디어고</p>
-									</div>
-								</div>
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
-									<div class="services color-2">
-										<span class="icon2"><i class="icon-globe-outline"></i></span>
-										<h3>경제학 전공</h3><p>성균관대</p>
-									</div>
-								</div>
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInTop">
-									<div class="services color-3">
-										<span class="icon2"><i class="icon-data"></i></span>
-										<h3>사업가</h3><p>온라인구매대행업</p>
-									</div>
-								</div>
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInBottom">
-									<div class="services color-4">
-										<span class="icon2"><i class="icon-phone3"></i></span>
-										<h3>개발자</h3><p>Java 백엔드</p>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-									<div class="hire">
-										<h2>I am happy to know you <br>that 300+ projects done sucessfully!</h2>
-										<a href="#" class="btn-hire">Hire me</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+    @media (max-width:900px) {
+      .grid-2 { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <h1>ESG 진단 컨설팅 리포트</h1>
+  <div class="subtitle">
+    설문 응답과 증빙문서 업로드 결과를 기반으로 현재 수준을 진단하고, 영역별 우선 조치(Action Plan)를 제안합니다.
+  </div>
 
+  <!-- 1. 영역별 점수 + 증빙 현황 -->
+  <h2>1. 영역별 점수와 증빙 현황</h2>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3>영역별 점수 레이더차트</h3>
+        <span class="pill">요약 지표</span>
+      </div>
+      <canvas id="radarChart" height="260"></canvas>
+      <div class="legend">
+        <span><span class="legend-color" style="background:#38bdf8;"></span>현재 점수</span>
+        <span><span class="legend-color" style="border:2px dashed #0f766e;background:transparent;"></span>목표 수준</span>
+      </div>
+    </div>
 
-			
-			<section class="colorlib-services" data-section="services">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">What I do?</span>
-							<h2 class="colorlib-heading">Here are some of my expertise</h2>
-						</div>
-					</div>
-					<div class="row row-pt-md">
-						<div class="col-md-4 text-center animate-box">
-							<div class="services color-1">
-								<span class="icon">
-									<i class="icon-bulb"></i>
-								</span>
-								<div class="desc">
-									<h3>Innovative Ideas</h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 text-center animate-box">
-							<div class="services color-2">
-								<span class="icon">
-									<i class="icon-data"></i>
-								</span>
-								<div class="desc">
-									<h3>Software</h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 text-center animate-box">
-							<div class="services color-3">
-								<span class="icon">
-									<i class="icon-phone3"></i>
-								</span>
-								<div class="desc">
-									<h3>Application</h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 text-center animate-box">
-							<div class="services color-4">
-								<span class="icon">
-									<i class="icon-layers2"></i>
-								</span>
-								<div class="desc">
-									<h3>Graphic Design</h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 text-center animate-box">
-							<div class="services color-5">
-								<span class="icon">
-									<i class="icon-data"></i>
-								</span>
-								<div class="desc">
-									<h3>Software</h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 text-center animate-box">
-							<div class="services color-6">
-								<span class="icon">
-									<i class="icon-phone3"></i>
-								</span>
-								<div class="desc">
-									<h3>Application</h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			
-			<div id="colorlib-counter" class="colorlib-counters" style="background-image: url(images/cover_bg_1.jpg);" data-stellar-background-ratio="0.5">
-				<div class="overlay"></div>
-				<div class="colorlib-narrow-content">
-					<div class="row">
-					</div>
-					<div class="row">
-						<div class="col-md-3 text-center animate-box">
-							<span class="colorlib-counter js-counter" data-from="0" data-to="309" data-speed="5000" data-refresh-interval="50"></span>
-							<span class="colorlib-counter-label">Cups of coffee</span>
-						</div>
-						<div class="col-md-3 text-center animate-box">
-							<span class="colorlib-counter js-counter" data-from="0" data-to="356" data-speed="5000" data-refresh-interval="50"></span>
-							<span class="colorlib-counter-label">Projects</span>
-						</div>
-						<div class="col-md-3 text-center animate-box">
-							<span class="colorlib-counter js-counter" data-from="0" data-to="30" data-speed="5000" data-refresh-interval="50"></span>
-							<span class="colorlib-counter-label">Clients</span>
-						</div>
-						<div class="col-md-3 text-center animate-box">
-							<span class="colorlib-counter js-counter" data-from="0" data-to="10" data-speed="5000" data-refresh-interval="50"></span>
-							<span class="colorlib-counter-label">Partners</span>
-						</div>
-					</div>
-				</div>
-			</div>
+    <div class="card">
+      <div class="card-header">
+        <h3>증빙문서 현황 (전체)</h3>
+        <span class="pill green">예시 데이터</span>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-label">권장 증빙 수</div>
+          <div class="kpi-value" id="kpiTotalRecommended">48</div>
+          <div class="kpi-sub">E·S·G·지배구조 전체 기준</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">업로드된 증빙</div>
+          <div class="kpi-value" id="kpiPrepared">31</div>
+          <div class="kpi-sub">준비율 <span id="kpiPreparedRate">64%</span></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">부족한 증빙</div>
+          <div class="kpi-value" id="kpiMissing">17</div>
+          <div class="kpi-sub">우선 보완 필요</div>
+        </div>
+      </div>
+      <canvas id="barEvidence" height="120" style="margin-top:12px;"></canvas>
+    </div>
+  </div>
 
-			<section class="colorlib-skills" data-section="skills">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">My Specialty</span>
-							<h2 class="colorlib-heading animate-box">My Skills</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-							<p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="progress-wrap">
-								<h3>Photoshop</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-1" role="progressbar" aria-valuenow="75"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:75%">
-								    <span>75%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="progress-wrap">
-								<h3>jQuery</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-2" role="progressbar" aria-valuenow="60"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:60%">
-								    <span>60%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="progress-wrap">
-								<h3>HTML5</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-3" role="progressbar" aria-valuenow="85"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:85%">
-								    <span>85%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="progress-wrap">
-								<h3>CSS3</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-4" role="progressbar" aria-valuenow="90"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:90%">
-								    <span>90%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="progress-wrap">
-								<h3>WordPress</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-5" role="progressbar" aria-valuenow="70"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:70%">
-								    <span>70%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="progress-wrap">
-								<h3>SEO</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-6" role="progressbar" aria-valuenow="80"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:80%">
-								    <span>80%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+  <!-- 2. 문항별 필수 증빙 요약 -->
+  <h2>2. 문항별 필수/누락 증빙 요약</h2>
+  <div class="card">
+    <div class="card-header">
+      <h3>주요 설문 문항별 체크리스트 (1줄 요약)</h3>
+      <span class="pill">필수 증빙 한눈에 보기</span>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th style="width:22%;">문항</th>
+        <th style="width:30%;">필수 증빙</th>
+        <th style="width:26%;">현재 보유 문서</th>
+        <th style="width:22%;">누락/권장 문서</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>환경 방침 및 목표(E1)</td>
+        <td>
+          <span class="tag">환경경영방침서</span>
+          <span class="tag">연간 환경목표 및 KPI</span>
+        </td>
+        <td>
+          <span class="tag">환경경영방침서</span>
+        </td>
+        <td>
+          <span class="tag missing">연간 환경목표/KPI</span>
+        </td>
+      </tr>
+      <tr>
+        <td>온실가스/에너지 관리(E2)</td>
+        <td>
+          <span class="tag">에너지 사용량 집계표</span>
+          <span class="tag">온실가스 인벤토리</span>
+        </td>
+        <td>
+          <span class="tag">에너지 사용량 집계표</span>
+        </td>
+        <td>
+          <span class="tag missing">온실가스 인벤토리</span>
+          <span class="tag optional">감축 목표 선언문(선택)</span>
+        </td>
+      </tr>
+      <tr>
+        <td>인권·노동 정책(S1)</td>
+        <td>
+          <span class="tag">인권경영 선언문</span>
+          <span class="tag">취업규칙/근로계약서 템플릿</span>
+        </td>
+        <td>
+          <span class="tag">취업규칙</span>
+        </td>
+        <td>
+          <span class="tag missing">인권경영 선언문</span>
+        </td>
+      </tr>
+      <tr>
+        <td>산업안전보건(S2)</td>
+        <td>
+          <span class="tag">안전보건관리 체계도</span>
+          <span class="tag">연간 안전 교육계획</span>
+        </td>
+        <td>
+          <span class="tag">안전보건관리 체계도</span>
+        </td>
+        <td>
+          <span class="tag missing">교육계획/실시 기록</span>
+        </td>
+      </tr>
+      <tr>
+        <td>윤리·부패방지(G1)</td>
+        <td>
+          <span class="tag">임직원 행동강령</span>
+          <span class="tag">부패방지 서약서 양식</span>
+        </td>
+        <td>
+          <span class="tag">행동강령</span>
+        </td>
+        <td>
+          <span class="tag missing">부패방지 서약서 양식</span>
+        </td>
+      </tr>
+      <tr>
+        <td>이사회/의사결정 구조(G2)</td>
+        <td>
+          <span class="tag">이사회/경영회의 규정</span>
+          <span class="tag">회의록 샘플</span>
+        </td>
+        <td>
+          <span class="tag">회의록 샘플</span>
+        </td>
+        <td>
+          <span class="tag missing">회의 규정</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div style="font-size:11px;color:#6b7280;margin-top:6px;">
+      ※ 실제 서비스에서는 설문 항목 메타데이터와 업로드 상태를 기반으로 자동 생성되며, 필수/선택 여부 태그도 함께 표시됩니다.[web:11]
+    </div>
+  </div>
 
-			<section class="colorlib-education" data-section="education">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">Education</span>
-							<h2 class="colorlib-heading animate-box">Education</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-							<div class="fancy-collapse-panel">
-								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-									<div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingOne">
-									        <h4 class="panel-title">
-									            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Master Degree Graphic Design
-									            </a>
-									        </h4>
-									    </div>
-									    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-									         <div class="panel-body">
-									            <div class="row">
-										      		<div class="col-md-6">
-										      			<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-										      		</div>
-										      		<div class="col-md-6">
-										      			<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-										      		</div>
-										      	</div>
-									         </div>
-									    </div>
-									</div>
-									<div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingTwo">
-									        <h4 class="panel-title">
-									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Bachelor Degree of Computer Science
-									            </a>
-									        </h4>
-									    </div>
-									    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-									        <div class="panel-body">
-									            <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-													<ul>
-														<li>Separated they live in Bookmarksgrove right</li>
-														<li>Separated they live in Bookmarksgrove right</li>
-													</ul>
-									        </div>
-									    </div>
-									</div>
-									<div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingThree">
-									        <h4 class="panel-title">
-									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Diploma in Information Technology
-									            </a>
-									        </h4>
-									    </div>
-									    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-									        <div class="panel-body">
-									            <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>	
-									        </div>
-									    </div>
-									</div>
+  <!-- 3. AI 추천 액션 플랜 -->
+  <h2>3. AI 추천 액션 플랜 (즉시 · 단기 · 중장기)</h2>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3>조치 우선순위 타임라인</h3>
+        <span class="pill red">누락 증빙 기준</span>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot dot-now"></div>
+          <div class="timeline-content">
+            <div class="timeline-label">즉시(0~1개월)</div>
+            <div class="timeline-text">
+              • 인권경영 선언문, 부패방지 서약서 양식, 환경·안전 기본 방침서 초안 작성 및 대표이사 승인 프로세스 구축.<br/>
+              • 현재 존재하지만 갱신이 필요한 규정류의 최신본 정리 및 파일명/버전 관리 체계 도입.
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-short"></div>
+          <div class="timeline-content">
+            <div class="timeline-label">단기(1~6개월)</div>
+            <div class="timeline-text">
+              • 에너지 사용량·온실가스 인벤토리, 안전 교육 이수 현황 등 정량 데이터 수집 템플릿 표준화 및 정기 집계 프로세스 구축.<br/>
+              • 정기적인 윤리·인권·안전 교육 계획 수립 및 교육자료/참석대장 양식 정의.
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-mid"></div>
+          <div class="timeline-content">
+            <div class="timeline-label">중장기(6~24개월)</div>
+            <div class="timeline-text">
+              • 환경/사회 KPI에 대한 연간 목표 설정(예: 에너지 사용량·사고율 감소 목표) 및 모니터링 대시보드 구축.[page:1][web:17]<br/>
+              • 이사회·경영회의 수준에서 ESG 현황을 정기 보고하고, CSRD/GRI 등 외부 공시 체계와 연계한 통합 ESG 보고 프로세스 설계.[page:1][web:11]
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-									<div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingFour">
-									        <h4 class="panel-title">
-									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Diploma in Information Technology
-									            </a>
-									        </h4>
-									    </div>
-									    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-									        <div class="panel-body">
-									            <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>	
-									        </div>
-									    </div>
-									</div>
+    <!-- 4. 추가 아이디어: 성숙도 게이지 + 리스크 매트릭스 -->
+    <div class="card">
+      <div class="card-header">
+        <h3>추가 인사이트 차트</h3>
+        <span class="pill">성숙도 & 리스크</span>
+      </div>
+      <canvas id="gaugeMaturity" height="160"></canvas>
+      <div style="font-size:11px;color:#6b7280;margin-top:4px;">
+        • 전사 ESG 성숙도 게이지(1~5단계).<br/>
+        • 설문 응답과 증빙 미비율을 조합해 “리스크 매트릭스(발생 가능성 × 영향도)” 히트맵도 함께 제공 가능.[web:11][web:20]
+      </div>
+    </div>
+  </div>
 
-									<div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingFive">
-									        <h4 class="panel-title">
-									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">High School Secondary Education
-									            </a>
-									        </h4>
-									    </div>
-									    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-									        <div class="panel-body">
-									            <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>	
-									        </div>
-									    </div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+  <!-- 4. 추가 아이디어: 여러 차트 제안 -->
+  <h2>4. 리포트 확장을 위한 시각화 아이디어</h2>
+  <div class="card">
+    <ul style="margin:0 0 4px 18px;font-size:13px;color:#374151;">
+      <li>연도별 ESG 점수 추세 라인차트: 베이스라인 대비 개선 정도와 목표치 라인(타깃 라인)을 함께 표시.[web:11]</li>
+      <li>주제별(예: 에너지·안전·인권·윤리) 리스크/기회 매트릭스 히트맵: 중대성(materiality)과 영향도를 2축으로 시각화.[page:1]</li>
+      <li>업종 평균·동종업체 벤치마크 막대차트: 자사 점수와 업계 평균, 상위 25% 수준을 나란히 비교.[web:11]</li>
+      <li>조직 내 부서별 증빙 준비율 파레토 차트: 준비율이 낮은 부서를 한눈에 보여 우선 지원 대상을 선정.[web:17]</li>
+      <li>웹 리포트 버전에서는 각 문항 행을 클릭하면 팝업/슬라이드 패널로 “샘플 양식, 참고 가이드, 책임 부서, 예상 리드타임” 등을 제공.</li>
+    </ul>
+    <div class="footer">
+      ESG 리포트는 정량 데이터와 시각화를 결합할수록 이해도와 신뢰도가 높아지므로, 바 차트·라인 차트·레이더 차트·히트맵·게이지 등을 조합해 대시보드형 리포트로 구성하는 것이 권장됩니다.[web:11][web:8]
+    </div>
+  </div>
+</div>
 
-			<section class="colorlib-experience" data-section="experience">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">Experience</span>
-							<h2 class="colorlib-heading animate-box">Work Experience</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-				         <div class="timeline-centered">
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-					            <div class="timeline-entry-inner">
+<script>
+  // === 예시 데이터 (백엔드에서 JSON으로 바인딩) ===
+  const areaLabels = ["환경", "사회", "지배구조", "정보공시"];
+  const areaScores = [62, 55, 48, 40];          // 현재 점수
+  const areaTargets = [80, 80, 75, 70];         // 목표 점수
+  const evidenceRecommended = [14, 12, 10, 12]; // 권장 문서 수
+  const evidencePrepared =    [9,  7,  6,  9];  // 보유 문서 수
 
-					               <div class="timeline-icon color-1">
-					                  <i class="icon-pen2"></i>
-					               </div>
+  // KPI 계산
+  const totalRecommended = evidenceRecommended.reduce((a,b)=>a+b,0);
+  const totalPrepared = evidencePrepared.reduce((a,b)=>a+b,0);
+  const totalMissing = totalRecommended - totalPrepared;
+  document.getElementById("kpiTotalRecommended").textContent = totalRecommended;
+  document.getElementById("kpiPrepared").textContent = totalPrepared;
+  document.getElementById("kpiMissing").textContent = totalMissing;
+  document.getElementById("kpiPreparedRate").textContent =
+    Math.round((totalPrepared/totalRecommended)*100) + "%";
 
-					               <div class="timeline-label">
-					                  <h2><a href="#">Full Stack Developer</a> <span>2017-2018</span></h2>
-					                  <p>Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.</p>
-					               </div>
-					            </div>
-					         </article>
+  // 1) 레이더 차트 (영역별 점수)
+  const radarCtx = document.getElementById("radarChart").getContext("2d");
+  new Chart(radarCtx, {
+    type: "radar",
+    data: {
+      labels: areaLabels,
+      datasets: [
+        {
+          label: "현재 점수",
+          data: areaScores,
+          backgroundColor: "rgba(56,189,248,0.35)",
+          borderColor: "rgba(56,189,248,1)",
+          borderWidth: 1.5,
+          pointBackgroundColor: "rgba(56,189,248,1)"
+        },
+        {
+          label: "목표 점수",
+          data: areaTargets,
+          backgroundColor: "rgba(15,118,110,0.08)",
+          borderColor: "rgba(15,118,110,0.9)",
+          borderWidth: 1,
+          borderDash: [4,3],
+          pointBackgroundColor: "rgba(15,118,110,1)"
+        }
+      ]
+    },
+    options: {
+      responsive:true,
+      plugins:{legend:{display:false}},
+      scales:{
+        r:{
+          suggestedMin:0,
+          suggestedMax:100,
+          ticks:{stepSize:20},
+          grid:{color:"rgba(148,163,184,0.4)"},
+          angleLines:{color:"rgba(148,163,184,0.4)"}
+        }
+      }
+    }
+  });
 
+  // 2) 영역별 증빙 준비율 막대차트
+  const barCtx = document.getElementById("barEvidence").getContext("2d");
+  new Chart(barCtx, {
+    type: "bar",
+    data: {
+      labels: areaLabels,
+      datasets: [
+        {
+          label: "권장 증빙 수",
+          data: evidenceRecommended,
+          backgroundColor: "rgba(209,213,219,0.9)"
+        },
+        {
+          label: "업로드된 증빙",
+          data: evidencePrepared,
+          backgroundColor: "rgba(59,130,246,0.9)"
+        }
+      ]
+    },
+    options: {
+      responsive:true,
+      plugins:{legend:{position:"bottom"}},
+      scales:{
+        y:{beginAtZero:true,ticks:{stepSize:2}}
+      }
+    }
+  });
 
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInRight">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-2">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="#">Front End Developer at Google Company</a> <span>2017-2018</span></h2>
-					                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-					               </div>
-					            </div>
-					         </article>
+  // 3) ESG 성숙도 게이지 (도넛 변형)
+  const gaugeCtx = document.getElementById("gaugeMaturity").getContext("2d");
+  const maturityLevel = 2.8; // 1~5 단계
+  new Chart(gaugeCtx, {
+    type: "doughnut",
+    data: {
+      labels:["현재 수준","남은 수준"],
+      datasets:[{
+        data:[maturityLevel, 5-maturityLevel],
+        backgroundColor:["#22c55e","#e5e7eb"],
+        borderWidth:0
+      }]
+    },
+    options:{
+      rotation:-90 * (Math.PI/180),
+      circumference:180 * (Math.PI/180),
+      cutout:"70%",
+      plugins:{legend:{display:false}},
+    }
+  });
 
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-3">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="#">System Analyst</a> <span>2017-2018</span></h2>
-					                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-					               </div>
-					            </div>
-					         </article>
-
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInTop">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-4">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="#">Creative Designer</a> <span>2017-2018</span></h2>
-					                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-					               </div>
-					            </div>
-					         </article>
-
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-5">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="#">UI/UX Designer at Envato</a> <span>2017-2018</span></h2>
-					                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-					               </div>
-					            </div>
-					         </article>
-
-					         <article class="timeline-entry begin animate-box" data-animate-effect="fadeInBottom">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-none">
-					               </div>
-					            </div>
-					         </article>
-					      </div>
-					   </div>
-				   </div>
-				</div>
-			</section>
-
-			<section class="colorlib-work" data-section="work">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">My Work</span>
-							<h2 class="colorlib-heading animate-box">Recent Work</h2>
-						</div>
-					</div>
-					<div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-						<div class="col-md-12">
-							<p class="work-menu"><span><a href="#" class="active">Graphic Design</a></span> <span><a href="#">Web Design</a></span> <span><a href="#">Software</a></span> <span><a href="#">Apps</a></span></p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="project" style="background-image: url(images/img-1.jpg);">
-								<div class="desc">
-									<div class="con">
-										<h3><a href="work.html">Work 01</a></h3>
-										<span>Website</span>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="project" style="background-image: url(images/img-2.jpg);">
-								<div class="desc">
-									<div class="con">
-										<h3><a href="work.html">Work 02</a></h3>
-										<span>Animation</span>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInTop">
-							<div class="project" style="background-image: url(images/img-3.jpg);">
-								<div class="desc">
-									<div class="con">
-										<h3><a href="work.html">Work 03</a></h3>
-										<span>Illustration</span>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInBottom">
-							<div class="project" style="background-image: url(images/img-4.jpg);">
-								<div class="desc">
-									<div class="con">
-										<h3><a href="work.html">Work 04</a></h3>
-										<span>Application</span>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="project" style="background-image: url(images/img-5.jpg);">
-								<div class="desc">
-									<div class="con">
-										<h3><a href="work.html">Work 05</a></h3>
-										<span>Graphic, Logo</span>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="project" style="background-image: url(images/img-6.jpg);">
-								<div class="desc">
-									<div class="con">
-										<h3><a href="work.html">Work 06</a></h3>
-										<span>Web Design</span>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12 animate-box">
-							<p><a href="#" class="btn btn-primary btn-lg btn-load-more">Load more <i class="icon-reload"></i></a></p>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<section class="colorlib-blog" data-section="blog">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">Read</span>
-							<h2 class="colorlib-heading">Recent Blog</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="blog-entry">
-								<a href="blog.html" class="blog-img"><img src="images/blog-1.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-								<div class="desc">
-									<span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-									<h3><a href="blog.html">Renovating National Gallery</a></h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="blog-entry">
-								<a href="blog.html" class="blog-img"><img src="images/blog-2.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-								<div class="desc">
-									<span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-									<h3><a href="blog.html">Wordpress for a Beginner</a></h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="blog-entry">
-								<a href="blog.html" class="blog-img"><img src="images/blog-3.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-								<div class="desc">
-									<span><small>April 14, 2018 </small> | <small> Inspiration </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-									<h3><a href="blog.html">Make website from scratch</a></h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12 animate-box">
-							<p><a href="#" class="btn btn-primary btn-lg btn-load-more">Load more <i class="icon-reload"></i></a></p>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<section class="colorlib-contact" data-section="contact">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">Get in Touch</span>
-							<h2 class="colorlib-heading">Contact</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-5">
-							<div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="colorlib-icon">
-									<i class="icon-globe-outline"></i>
-								</div>
-								<div class="colorlib-text">
-									<p><a href="#">kimjw8712@gmail.com</a></p>
-								</div>
-							</div>
-
-							<div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="colorlib-icon">
-									<i class="icon-map"></i>
-								</div>
-								<div class="colorlib-text">
-									<p>서울 금천구 시흥대로153길</p>
-								</div>
-							</div>
-
-							<div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="colorlib-icon">
-									<i class="icon-phone"></i>
-								</div>
-								<div class="colorlib-text">
-									<p><a href="tel://">010-2787-8712</a></p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-7 col-md-push-1">
-							<div class="row">
-								<div class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box" data-animate-effect="fadeInRight">
-									<form action="">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="이름">
-										</div>
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="답변 받을 E-Mail">
-										</div>
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="제목">
-										</div>
-										<div class="form-group">
-											<textarea name="" id="message" cols="30" rows="7" class="form-control" placeholder="내용"></textarea>
-										</div>
-										<div class="form-group">
-											<input type="submit" class="btn btn-primary btn-send-message" value="Send Message">
-										</div>
-									</form>
-								</div>
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-		</div><!-- end:colorlib-main -->
-	</div><!-- end:container-wrap -->
-	</div><!-- end:colorlib-page -->
-
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="js/jquery.flexslider-min.js"></script>
-	<!-- Owl carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- Counters -->
-	<script src="js/jquery.countTo.js"></script>
-	
-	
-	<!-- MAIN JS -->
-	<script src="js/main.js"></script>
-
-	</body>
+</script>
+</body>
 </html>
-
